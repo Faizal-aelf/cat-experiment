@@ -28,7 +28,7 @@ export const dateTimeDisplayFormat = (dateString) =>  {
   const parsedDate = moment(dateString, 'YYYY-MM-DD HH:mm:ss');
 
   // Format the parsed date as desired
-  const formattedDate = parsedDate.format('MMMM Do YYYY, h:mm:ss a');
+  const formattedDate = parsedDate.format('MMMM Do YYYY'); // , h:mm:ss a
   return formattedDate;
 }
 
