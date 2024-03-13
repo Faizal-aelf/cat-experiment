@@ -23,12 +23,12 @@ export const truncateString = (str, maxLength = 20) =>  {
   return str;
 }
 
-export const dateTimeDisplayFormat = (dateString) =>  {
+export const dateTimeDisplayFormat = (dateString, format = 'MMMM Do YYYY') =>  {
   // Parse the date string using Moment.js
   const parsedDate = moment(dateString, 'YYYY-MM-DD HH:mm:ss');
 
   // Format the parsed date as desired
-  const formattedDate = parsedDate.format('MMMM Do YYYY'); // , h:mm:ss a
+  const formattedDate = parsedDate.format(format); //'MMMM Do YYYY', h:mm:ss a
   return formattedDate;
 }
 

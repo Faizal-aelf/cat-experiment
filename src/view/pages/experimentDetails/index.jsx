@@ -17,6 +17,8 @@ import {CardImage} from '../../molecules';
 import PageHeader from '../common/header/pageHeader';
 import {dateTimeDisplayFormat} from '../../../utils/file';
 import {SUBMIT_STATUE} from '../../../utils/constants';
+import Comments from './components/comments';
+import {FEATURE} from '../../../utils/feature';
 
 // MOCK DATA
 import ExperimentList from './data/list.json';
@@ -60,8 +62,8 @@ const ExperimentDetailsPage = () => {
       {state.status == SUBMIT_STATUE.SUBMITTED && <Alert severity="warning">Experiment not yet completed to view the result.</Alert>}
       {state.status == SUBMIT_STATUE.COMPLETED && <Alert severity="success">Experiment has been completed successfully.</Alert>}
       {state.status == SUBMIT_STATUE.ERROR && <Alert severity="error">Experiment fail to complete.</Alert>}
-      {state.status == SUBMIT_STATUE.STARTED && <Alert severity="info">Experiment has been started. Please wait for sometime to view the result.</Alert>}<br/>
-      <Box className={classes.formRow}>
+      {state.status == SUBMIT_STATUE.STARTED && <Alert severity="info">Experiment has been started. Please wait for sometime to view the result.</Alert>}
+      <Box className={classes.formRow} mt={5}>
         <Box className={classes.formField}>
           <Box className={classes.fieldLabel}>Experiment ID</Box>
           <Box className={classes.fieldValue}>{state.experimentId}</Box>
@@ -96,7 +98,7 @@ const ExperimentDetailsPage = () => {
 
       <Box className={classes.formRow}>
         <Box className={classes.formFieldlBlock}>
-            <Box className={classes.fieldLabelBlock}>Trait definitioins</Box>
+            <Box className={classes.fieldLabel}>Trait definitioins</Box>
             <TextField  variant="outlined" fullWidth={true} value={state.traitsFile} 
               multiline maxRows={10} className={classes.formTextfield}/>
         </Box>
@@ -104,14 +106,14 @@ const ExperimentDetailsPage = () => {
       
       <Box className={classes.formRow}>
         <Box className={classes.formFieldlBlock}>
-            <Box className={classes.fieldLabelBlock}>Create Prompt file</Box>
+            <Box className={classes.fieldLabel}>Create Prompt file</Box>
           <TextField  variant="outlined" fullWidth={true} value={state.createPromptFile} 
               multiline maxRows={10} className={classes.formTextfield}/>
         </Box>
       </Box>
       <Box className={classes.formRow}>
         <Box className={classes.formFieldlBlock}>
-            <Box className={classes.fieldLabelBlock}>Config file</Box>
+            <Box className={classes.fieldLabel}>Config file</Box>
           <TextField variant="outlined" fullWidth={true} value={state.configFile} 
               multiline maxRows={10} className={classes.formTextfield}/>
         </Box>
@@ -128,6 +130,7 @@ const ExperimentDetailsPage = () => {
           </li>
         ))}
         </ul>}
+      {FEATURE.COMMENTS && <Comments experimentData={state}/>}
     </Container>
   );
 };

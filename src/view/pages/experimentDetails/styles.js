@@ -11,15 +11,22 @@ const useStyles = makeStyles(() => ({
     formField: {
         flex: 1,
         display: 'flex',
-        flexDirection: 'row',
-        padding: '12px 8px',
+        flexDirection: 'column',
+        padding: '12px 15px 14px 15px',
         background: '#f1f1f1',
         borderRadius: '4px',
+        marginBottom: '8px'
     },
     fieldLabel: {
-        width: '140px',
-        fontSize: '13px',
-        fontWeight: 600
+        maxWidth: "fit-content",
+        fontSize: "13px",
+        marginTop: "-28px",
+        fontWeight: "600",
+        marginBottom: "11px",
+        background: "#f1f1f1",
+        padding: "7px 12px 0 12px",
+        borderRadius: "4px",
+        marginLeft: "8px",
     },
     fieldLabelBlock: {
         width: '140px',

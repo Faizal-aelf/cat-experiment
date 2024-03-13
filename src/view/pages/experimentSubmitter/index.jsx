@@ -42,7 +42,8 @@ const ExperimentSubmitterPage = () => {
     createPromptFile: null,
     configFile: null,
     submittedDate: getTodayDateTime(),
-    status: SUBMIT_STATUE.SUBMITTED
+    status: SUBMIT_STATUE.SUBMITTED,
+    comments: []
   });
 
   const handleChange = (event, name) => {
