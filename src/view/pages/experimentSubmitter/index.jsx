@@ -52,22 +52,35 @@ const ExperimentSubmitterPage = () => {
         const file = files[0];
         const reader = new FileReader();
         const fileExtension = file.name.split('.').pop().toLowerCase();
-        reader.onload = (e) => {
-          if (fileExtension == 'json') {
-          const jsonData = JSON.parse(e.target.result);
-          const jsonString = JSON.stringify(jsonData);
-            setState(prevState => ({
+        if ((fileExtension === 'json' && ['configFile', 'traitsFile'].includes(name)) || (fileExtension === 'js' && ['createPromptFile'].includes(name))) {
+          reader.onload = (e) => {
+            if (fileExtension == 'json') {
+            const jsonData = JSON.parse(e.target.result);
+            const jsonString = JSON.stringify(jsonData);
+              setState(prevState => ({
+                  ...prevState,
+                  [name]: jsonString,
+              }));
+            } else {
+              setState(prevState => ({
                 ...prevState,
-                [name]: jsonString,
+                [name]: e.target.result,
             }));
-          } else {
-            setState(prevState => ({
-              ...prevState,
-              [name]: e.target.result,
-          }));
-          }
-        };
+            }
+          };
         reader.readAsText(file);
+      } else {
+        if (['configFile', 'traitsFile'].includes(name)) {
+          alert('Please upload only JSON file');
+        } else {
+          alert('Please upload only Javascript file');
+        }
+        setState(prevState => ({
+          ...prevState,
+          [name]: null,
+        }));
+        event.target.value = null;
+      }
     } else {
         setState(prevState => ({
             ...prevState,
