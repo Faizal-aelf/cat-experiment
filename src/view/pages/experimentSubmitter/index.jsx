@@ -74,7 +74,7 @@ const ExperimentSubmitterPage = () => {
             submittedDate: getTodayDateTime()
           }
           console.log("params: ", params);
-          /*const response = await axios.post(
+          const response = await axios.post(
               EXPERIMENT_SUBMIT_API,
                   {
                       ...params,
@@ -86,7 +86,6 @@ const ExperimentSubmitterPage = () => {
               }
           );
           console.log(response.data);
-          alert('Created successfully')*/
           alert('Submitted successfully');
           resetForm();
       } catch (error) {
