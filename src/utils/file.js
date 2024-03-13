@@ -32,3 +32,12 @@ export const dateTimeDisplayFormat = (dateString, format = 'MMMM Do YYYY') =>  {
   return formattedDate;
 }
 
+export const isJSON = (content) => {
+  try {
+      JSON.parse(content);
+      return true;
+  } catch (error) {
+      return false;
+  }
+}
+

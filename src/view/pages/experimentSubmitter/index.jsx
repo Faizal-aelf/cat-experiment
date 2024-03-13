@@ -51,11 +51,21 @@ const ExperimentSubmitterPage = () => {
     if (type === 'file') {
         const file = files[0];
         const reader = new FileReader();
+        const fileExtension = file.name.split('.').pop().toLowerCase();
         reader.onload = (e) => {
+          if (fileExtension == 'json') {
+          const jsonData = JSON.parse(e.target.result);
+          const jsonString = JSON.stringify(jsonData);
             setState(prevState => ({
                 ...prevState,
-                [name]: e.target.result,
+                [name]: jsonString,
             }));
+          } else {
+            setState(prevState => ({
+              ...prevState,
+              [name]: e.target.result,
+          }));
+          }
         };
         reader.readAsText(file);
     } else {
@@ -65,6 +75,8 @@ const ExperimentSubmitterPage = () => {
         }));
     }
   };
+
+  
 
   const submitForm = async () => {
     setLoading(true);
