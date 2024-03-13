@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+/**
+ * 
+ * App component
+ * @author - NA 
+ * @date - 1st March, 2024
+ * 
+ */
+// GENERIC IMPORT
+import {useReducer} from 'react';
+
+// ROUTER IMPORT
+import EntryRoutes from './view/routes/entryRoutes';
+
+// CONTEXT
+import { menuInitialState, menuContext as MenuContext, menuReducer } from './contexts/useMenuContext';
 
 function App() {
+
+  const [state, dispatch] = useReducer(menuReducer, menuInitialState);
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MenuContext.Provider value={{ state, dispatch }}>
+      <EntryRoutes/>
+    </MenuContext.Provider>
   );
 }
 
 export default App;
+

@@ -1,0 +1,6 @@
+export const SUBMIT_STATUE = {
+    SUBMITTED: 'SUBMITTED', 
+    STARTED: 'STARTED', 
+    COMPLETED: 'COMPLETED', 
+    ERROR: 'ERROR'
+};
