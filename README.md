@@ -19,18 +19,18 @@ In the project directory, you can run:
 
 `Add Experiment`
 
-1. You can view the API in the file at `src/view/pages/experimentSubmitter/index.jsx`
+1. You can view the API call in the file at `src/view/pages/experimentSubmitter/index.jsx`
 
 
 `Add Experiment`
 
-1. You can view the API in the file at `src/view/pages/experimentList/index.jsx`
+1. You can view the API call in the file at `src/view/pages/experimentList/index.jsx`
 
 
 
 `Add Experiment`
 
-1. You can view the API in the file at `src/view/pages/experimentDetails/components/comments.jsx`
+1. You can view the API call in the file at `src/view/pages/experimentDetails/components/comments.jsx`
 
 
 ## Mock file

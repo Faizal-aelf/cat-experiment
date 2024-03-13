@@ -63,7 +63,8 @@ const Comments = (props) => {
             }
         );
         console.log(response.data);
-        alert('Created successfully')*/
+        */
+        // ONCE API READY, CAN UNCOMMENT THE ABOVE CODE
         alert('Submitted successfully');
         resetForm();
     } catch (error) {
