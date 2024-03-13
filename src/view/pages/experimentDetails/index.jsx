@@ -8,7 +8,7 @@
 // GENERIC IMPORT
 import clsx from 'clsx';
 import { useState, useEffect } from 'react';
-import {Box, TextField} from '@mui/material';
+import {Box, TextField, Alert} from '@mui/material';
 import { useParams } from 'react-router-dom';
 
 // COMMON COMPONENT
@@ -16,6 +16,7 @@ import {Container} from '../../atom';
 import {CardImage} from '../../molecules';
 import PageHeader from '../common/header/pageHeader';
 import {dateTimeDisplayFormat} from '../../../utils/file';
+import {SUBMIT_STATUE} from '../../../utils/constants';
 
 // MOCK DATA
 import ExperimentList from './data/list.json';
@@ -56,6 +57,10 @@ const ExperimentDetailsPage = () => {
   return (
     <Container>
       <PageHeader title='Experiment Details' subtitle="Here's what you're looking at"  {...{isLoading}}></PageHeader>
+      {state.status == SUBMIT_STATUE.SUBMITTED && <Alert severity="warning">Experiment not yet completed to view the result.</Alert>}
+      {state.status == SUBMIT_STATUE.COMPLETED && <Alert severity="success">Experiment has been completed successfully.</Alert>}
+      {state.status == SUBMIT_STATUE.ERROR && <Alert severity="error">Experiment fail to complete.</Alert>}
+      {state.status == SUBMIT_STATUE.STARTED && <Alert severity="info">Experiment has been started. Please wait for sometime to view the result.</Alert>}<br/>
       <Box className={classes.formRow}>
         <Box className={classes.formField}>
           <Box className={classes.fieldLabel}>Experiment ID</Box>

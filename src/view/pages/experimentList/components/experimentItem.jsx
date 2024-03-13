@@ -35,7 +35,9 @@ const ExperimentItem = (props) => {
       <Box flex={props.widths[2]} className={classes.rowData}>{props.data.submitterName}</Box>
       <Box flex={props.widths[3]} className={classes.rowData}>{dateTimeDisplayFormat(props.data.submittedDate)}</Box>
       <Box flex={props.widths[4]} className={classes.rowData}>{props.data.status}</Box>
-      <Box flex={props.widths[5]} className={classes.rowData}><Box component='span' className={classes.link} onClick={() => openDetails(props.data.experimentId)}>Details</Box> {props.data.status == SUBMIT_STATUE.COMPLETED && (<>| <Box className={classes.link} component='span' >Result</Box></>)}</Box>
+      <Box flex={props.widths[5]} className={classes.rowData}>
+        <Box component='span' className={classes.link} onClick={() => openDetails(props.data.experimentId)}>Details</Box> 
+        {props.data.status == SUBMIT_STATUE.COMPLETED && (<>| <Box className={classes.link} component='span' onClick={() => openDetails(props.data.experimentId)}>Result</Box></>)}</Box>
     </Box>
   );
 };
