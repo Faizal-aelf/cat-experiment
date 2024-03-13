@@ -44,9 +44,11 @@ In the project directory, you can run:
 
 ## Sets to deploy
 
-1. npm install gh-pages --force
-2. Add the following property in the package.json -> "homepage": "https://faizal-aelf.github.io/image-generator",
-3. Add the following property inside scripts object in the package.json file -> "predeploy": "npm run build", -> package.json
-4. Add the following property inside scripts object in the package.json file -> "deploy": "gh-pages -d build", -> package.json
-5. npm run deploy
+Do below steps after cloning and installing all npm module by `npm install --force`
+
+1. `npm install gh-pages --force`
+2. Add the following property in the package.json -> `"homepage": "https://faizal-aelf.github.io/image-generator"`
+3. Add the following property inside scripts object in the package.json file -> `"predeploy": "npm run build"`
+4. Add the following property inside scripts object in the package.json file -> `"deploy": "gh-pages -d build"`
+5. `npm run deploy`
 6. Wait for 1 or 2 minutes and Check the last deployment time from here -> https://github.com/Faizal-aelf/cat-experiment/settings/pages and if its happened recent then click "Visit site" button.
