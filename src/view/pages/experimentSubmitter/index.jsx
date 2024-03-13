@@ -76,6 +76,7 @@ const ExperimentSubmitterPage = () => {
           );
           console.log(response.data);
           alert('Created successfully')*/
+          alert('Submitted successfully')
       } catch (error) {
           console.log('error: ', error);
           alert("Error occured:");
