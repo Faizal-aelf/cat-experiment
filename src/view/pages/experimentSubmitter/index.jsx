@@ -6,7 +6,7 @@
  * 
  */
 // GENERIC IMPORT
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import {Box, TextField, Button} from '@mui/material';
 import axios from 'axios';
 
@@ -23,6 +23,13 @@ import useStyles from './styles';
 const ExperimentSubmitterPage = () => {
   // DECLARE STYLE
   const classes = useStyles();
+
+  // REF
+  const traitFileInputRef = useRef(null);
+  const createPromptFileInputRef = useRef(null);
+  const configFileInputRef = useRef(null);
+
+
 
   // STATE VARIABLE
   const [isLoading, setLoading] = useState(false);
@@ -61,7 +68,10 @@ const ExperimentSubmitterPage = () => {
   const submitForm = async () => {
     setLoading(true);
       try {
-          const params = {...state}
+          const params = {
+            ...state,
+            submittedDate: getTodayDateTime()
+          }
           console.log("params: ", params);
           /*const response = await axios.post(
               EXPERIMENT_SUBMIT_API,
@@ -76,7 +86,8 @@ const ExperimentSubmitterPage = () => {
           );
           console.log(response.data);
           alert('Created successfully')*/
-          alert('Submitted successfully')
+          alert('Submitted successfully');
+          resetForm();
       } catch (error) {
           console.log('error: ', error);
           alert("Error occured:");
@@ -84,6 +95,24 @@ const ExperimentSubmitterPage = () => {
           setLoading(false);
       }
   };
+
+  const resetForm = () => {
+    setState({
+      ...state,
+      experimentId: generateRandomString(),
+      submitterName: '',
+      noOfSamples: 100,
+      experimentDetails: '',
+      // traitsFile: null,
+      // createPromptFile: null,
+      // configFile: null,
+      submittedDate: getTodayDateTime(),
+      status: SUBMIT_STATUE.SUBMITTED
+    });
+    // traitFileInputRef.current.value = '';
+    // createPromptFileInputRef.current.value = '';
+    // configFileInputRef.current.value = '';
+  }
 
   return (
     <Container>
@@ -110,7 +139,10 @@ const ExperimentSubmitterPage = () => {
             onChange={(event) => handleChange(event, 'traitsFile')}
             fullWidth={true}
             required
-            helperText='Upload Trait definitioins file in json format'/>
+            helperText='Upload Trait definitioins file in json format'
+            InputProps={
+              {ref: traitFileInputRef}
+            }/>
         </Box>
         <Box flex={1}>
           <TextField 
@@ -121,7 +153,10 @@ const ExperimentSubmitterPage = () => {
             onChange={(event) => handleChange(event, 'createPromptFile')}
             fullWidth={true}
             required
-            helperText='Upload createPrompt.js file in js format'/>
+            helperText='Upload createPrompt.js file in js format'
+            InputProps={
+              {ref: createPromptFileInputRef}
+            }/>
         </Box>
       </Box>
       <Box className={classes.formRow}>
@@ -134,7 +169,10 @@ const ExperimentSubmitterPage = () => {
             onChange={(event) => handleChange(event, 'configFile')}
             fullWidth={true}
             required
-            helperText='Upload config file in json format'/>
+            helperText='Upload config file in json format'
+            InputProps={
+              {ref: configFileInputRef}
+            }/>
         </Box>
         <Box flex={1}>
           <TextField  label="Number of samples" variant="outlined" 
