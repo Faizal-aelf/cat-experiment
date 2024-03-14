@@ -103,7 +103,7 @@ const ExperimentDetailsPage = () => {
 
 
   useEffect(() => {
-    getExperimentDetailById();
+    // getExperimentDetailById();
   }, []);
   return (
     <Container>
@@ -180,12 +180,15 @@ const ExperimentDetailsPage = () => {
         {state?.result.map((item, index) => (
           <Box className={classes.dataList} key={`result-image-${index}`}>
             <Box width={300} className={classes.dataListItem}>
-              <CardImage file={
-                {
-                  imageSrc: `data:image/webp;base64, ${item.imageResult}`,
-                  size: `${getImageSizeInKB(item.imageResult).toFixed(2)} KB`,
-                }
-              }/>
+              <Box>
+                <CardImage file={
+                  {
+                    imageSrc: `data:image/webp;base64, ${item.imageResult}`,
+                    size: `${getImageSizeInKB(item.imageResult).toFixed(2)} KB`,
+                  }
+                }/>
+                <Box className={classes.title} textAlign={'center'} marginTop={0.5}><strong>Created date: </strong>{Date(item.create_date)}</Box>
+              </Box>
             </Box>
             <Box className={classes.dataListItem}>
               <Box className={classes.title} marginTop={0.5}><strong>Prompt: </strong>{item.prompt}&nbsp;<i className={clsx("fa fa-clone", classes.copyIcon)} onClick={() => navigator.clipboard.writeText(item.prompt)}></i></Box>
