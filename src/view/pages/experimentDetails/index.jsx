@@ -8,7 +8,7 @@
 // GENERIC IMPORT
 import clsx from 'clsx';
 import { useState, useEffect } from 'react';
-import {Box, TextField, Alert} from '@mui/material';
+import {Box, TextField, Alert, Button} from '@mui/material';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
@@ -60,6 +60,47 @@ const ExperimentDetailsPage = () => {
     return sizeInKB;
   };
 
+  const downloadJSONFile = (content, fileName) => {
+
+    // Convert JSON object to string
+    const jsonString = content;
+
+    // Create a Blob containing the JSON data
+    const blob = new Blob([jsonString], { type: 'application/json' });
+
+    // Create a temporary URL for the Blob
+    const url = URL.createObjectURL(blob);
+
+    // Create an anchor element
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${fileName}.json`; // File name
+    link.click();
+
+    // Revoke the temporary URL
+    URL.revokeObjectURL(url);
+  };
+
+  const downloadJSFile = (content, fileName) => {
+    // JavaScript content
+    const jsContent = content;
+
+    // Create a Blob containing the JavaScript data
+    const blob = new Blob([jsContent], { type: 'text/javascript' });
+
+    // Create a temporary URL for the Blob
+    const url = URL.createObjectURL(blob);
+
+    // Create an anchor element
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${fileName}.JS`; // File name
+    link.click();
+
+    // Revoke the temporary URL
+    URL.revokeObjectURL(url);
+  };
+
 
   useEffect(() => {
     getExperimentDetailById();
@@ -109,6 +150,9 @@ const ExperimentDetailsPage = () => {
             <Box className={classes.fieldLabel}>Trait definitioins</Box>
             <TextField  variant="outlined" fullWidth={true} value={state.traitsFile} 
               multiline maxRows={10} className={classes.formTextfield}/>
+          <Box className="btn-container" textAlign='right' mt={1}>
+            <Button variant="contained" onClick={() => downloadJSONFile(state.traitsFile, 'traits')} disabled={!state.traitsFile}>Download</Button>
+          </Box>
         </Box>
       </Box>
       
@@ -117,6 +161,9 @@ const ExperimentDetailsPage = () => {
             <Box className={classes.fieldLabel}>Create Prompt file</Box>
           <TextField  variant="outlined" fullWidth={true} value={state.createPromptFile} 
               multiline maxRows={10} className={classes.formTextfield}/>
+            <Box className="btn-container" textAlign='right' mt={1}>
+              <Button variant="contained" onClick={() => downloadJSFile(state.createPromptFile, 'createPrompt')} disabled={!state.createPromptFile}>Download</Button>
+            </Box>
         </Box>
       </Box>
       <Box className={classes.formRow}>
@@ -124,6 +171,9 @@ const ExperimentDetailsPage = () => {
             <Box className={classes.fieldLabel}>Config file</Box>
           <TextField variant="outlined" fullWidth={true} value={state.configFile} 
               multiline maxRows={10} className={classes.formTextfield}/>
+          <Box className="btn-container" textAlign='right' mt={1}>
+            <Button variant="contained" onClick={() => downloadJSONFile(state.configFile, 'config')} disabled={!state.configFile}>Download</Button>
+          </Box>
         </Box>
       </Box>
       {state?.result?.length > 0 && <Box>
