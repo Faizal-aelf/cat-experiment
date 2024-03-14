@@ -7,7 +7,7 @@
  */
 // GENERIC IMPORT
 import { useState, useRef } from 'react';
-import {Box, TextField, Button} from '@mui/material';
+import {Box, TextField, Button, Typography} from '@mui/material';
 import axios from 'axios';
 
 // COMMON COMPONENT
@@ -39,7 +39,8 @@ const ExperimentSubmitterPage = () => {
     noOfSamples: 100,
     experimentDetails: '',
     traitsFile: null,
-    createPromptFile: null,
+    // createPromptFileOld: null,
+    createPromptFile: '',
     configFile: null,
     submittedDate: getTodayDateTime(),
     status: SUBMIT_STATUE.SUBMITTED,
@@ -52,7 +53,7 @@ const ExperimentSubmitterPage = () => {
         const file = files[0];
         const reader = new FileReader();
         const fileExtension = file.name.split('.').pop().toLowerCase();
-        if ((fileExtension === 'json' && ['configFile', 'traitsFile'].includes(name)) || (fileExtension === 'js' && ['createPromptFile'].includes(name))) {
+        if ((fileExtension === 'json' && ['configFile', 'traitsFile'].includes(name))/* || (fileExtension === 'js' && ['createPromptFile'].includes(name))*/) {
           reader.onload = (e) => {
             if (fileExtension == 'json') {
             const jsonData = JSON.parse(e.target.result);
@@ -66,13 +67,23 @@ const ExperimentSubmitterPage = () => {
               // Remove comments that appear after valid code
               const cleanedContent = fileContent.replace(/\/\/.*?(?=\n|$)/g, ''); // Remove single line comments
 
-              // Remove newlines and replace multiple spaces with a single space
-              let finalContent = cleanedContent.replace(/[\n\r]+/g, ' ');
-              
-              // Apply additional replacements
-              finalContent = finalContent.replace(/\s*({|}|:)\s*/g, '$1')
-                                        .replace(/\s*([=+-,]==|===|[,=-])\s*/g, '$1')
-                                        .replace(/\s*([!"#$%&'()*+,\-./:;<=>?@[\\\]^~])\s*/g, '$1').replace(/\s+/g, ' ');;   
+                // Remove newlines and replace multiple spaces with a single space
+                // Replace spaces within single quotes and backticks with a placeholder
+                const placeholder = '__SPACE__';
+                let finalContent = cleanedContent.replace(/(['`])(.*?)\1/g, (match, quote, content) => {
+                  return quote + content.replace(/\s+/g, placeholder) + quote;
+                });
+
+                // Apply additional replacements
+                finalContent = finalContent
+                  // Remove spaces around specific characters
+                  .replace(/(?<!['`])\s*({|}|:|=|\+|-|,|==|===|[!\"#$%&'()*+,\\\-./:;<=>?@[\\\]^~])\s*/g, '$1')
+                  .replace(/(?<!['`])\s*(if|;|,)\s*(?![`'])/g, '$1')
+                  // Convert multiple spaces into single space
+                  .replace(/\s+/g, ' ');
+
+                // Restore spaces within single quotes and backticks
+                finalContent = finalContent.replace(new RegExp(placeholder, 'g'), ' ');   
               // finalContent = finalContent.replace(/\b(function|return|var|const|let)\b/g, '$1 '); 
               
               console.log(finalContent)          
@@ -84,11 +95,12 @@ const ExperimentSubmitterPage = () => {
           };
         reader.readAsText(file);
       } else {
-        if (['configFile', 'traitsFile'].includes(name)) {
+        alert('Please upload only JSON file');
+        /* if (['configFile', 'traitsFile'].includes(name)) {
           alert('Please upload only JSON file');
         } else {
           alert('Please upload only Javascript file');
-        }
+        } */
         setState(prevState => ({
           ...prevState,
           [name]: null,
@@ -142,6 +154,7 @@ const ExperimentSubmitterPage = () => {
       submitterName: '',
       noOfSamples: 100,
       experimentDetails: '',
+      createPromptFile: '',
       // traitsFile: null,
       // createPromptFile: null,
       // configFile: null,
@@ -184,18 +197,12 @@ const ExperimentSubmitterPage = () => {
             }/>
         </Box>
         <Box flex={1}>
-          <TextField 
-            accept="image/*" 
-            type="file" 
-            variant="outlined" 
-            className={classes.formTextfield}
-            onChange={(event) => handleChange(event, 'createPromptFile')}
-            fullWidth={true}
-            required
-            helperText='Upload createPrompt.js file in js format'
-            InputProps={
-              {ref: createPromptFileInputRef}
-            }/>
+          <TextField  label="Create Prompt File content" variant="outlined" fullWidth={true} value={state.createPromptFile} 
+            multiline maxRows={5} className={classes.formTextfield} 
+            onChange={(event) => handleChange(event, 'createPromptFile')} />
+            <Typography variant="caption" display="block">
+              Compress your js file content from <a target='_blank' href='https://www.jyshare.com/front-end/51/'>https://www.jyshare.com/front-end/51/</a> before pasting it
+            </Typography>
         </Box>
       </Box>
       <Box className={classes.formRow}>
