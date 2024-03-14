@@ -1,3 +1,3 @@
 export const FEATURE = {
-    COMMENTS: true
+    COMMENTS: false
 }
