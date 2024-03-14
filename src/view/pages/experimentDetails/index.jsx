@@ -37,14 +37,14 @@ const ExperimentDetailsPage = () => {
   const [isLoading, setLoading] = useState(false);
   const [state, setState] = useState({});
 
-
   const getExperimentDetailById = async () => {
     setLoading(true);
     try {
         const response = await axios.get(`${GET_EXPERIMENT_BY_ID_API}${itemId}`);
         console.log(response.data);
-        const responseList = response.data;
-        setState(responseList);
+        console.log(response.data?.[0] || {});
+        const responseObject = response.data?.[0] || {};
+        setState(responseObject);
     } catch (error) {
       console.log('error: ', error);
       alert("Something went wrong. Please try again later.");

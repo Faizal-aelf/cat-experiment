@@ -1,4 +1,4 @@
-{
+[{
         "experimentId": "eVBtngpEQ2SxO6Z", 
         "submitterName": "Faizal", 
         "noOfSamples": 100, 
@@ -27,4 +27,4 @@
                 "status": "Success"
             }
         ]
-    }
+    }]
