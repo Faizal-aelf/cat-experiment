@@ -43,7 +43,8 @@ const ExperimentDetailsPage = () => {
         const response = await axios.get(`${GET_EXPERIMENT_BY_ID_API}${itemId}`);
         console.log(response.data);
         console.log(response.data?.[0] || {});
-        const responseObject = response.data?.[0] || {};
+        let responseObject = response.data?.[0] || {};
+        responseObject.result = responseObject?.result.sort((a, b) => new Date(b.create_date) - new Date(a.create_date));
         setState(responseObject);
     } catch (error) {
       console.log('error: ', error);
