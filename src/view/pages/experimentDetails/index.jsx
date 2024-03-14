@@ -198,7 +198,7 @@ const ExperimentDetailsPage = () => {
               <Box className={classes.title} marginTop={1}><strong>Revised prompt: </strong>{item.revised_prompt}&nbsp;<i className={clsx("fa fa-clone", classes.copyIcon)} onClick={() => navigator.clipboard.writeText(item.revised_prompt)}></i></Box>
             </Box>
             {item.traits && <Box className={classes.dataListItem}>
-              <Box className={classes.title} marginTop={1}><strong>Traits: </strong>{item.traits}&nbsp;<i className={clsx("fa fa-clone", classes.copyIcon)} onClick={() => navigator.clipboard.writeText(item.traits)}></i></Box>
+              <Box className={classes.title} marginTop={1}><strong>Traits: </strong>{JSON.stringify(item.traits)}&nbsp;</Box>
             </Box>}
           </Box>
         ))}

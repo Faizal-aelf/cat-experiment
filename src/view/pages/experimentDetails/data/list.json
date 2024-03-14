@@ -13,7 +13,31 @@
                 "prompt": "I NEED to test how the tool works with extremely simple prompts. DO NOT add any detail, just use it AS-IS: A simple pixel art image of a The breed for this cat character is Napoleon cat cat in a natural sitting pose with 4 legs visible, facing directly at the viewer, with  Hanbok, Starry, Lunar Eclipse Boots, Wrench, Belt with claw buckle, Breton Hat, Shimmering, Whistling, Rocket Ship, Selkirk Rex Tail, Capris, Garrote, Harpy Talon Wings, Virgo, Camera Lens Necklace, Wiry Paw, Bunny, Silver,and Bushy Mustache. The image has a Has a Futuristic Hoverboard Park background background.",
                 "revised_prompt": "A simple pixel art image of a Napoleon cat in a natural sitting pose with 4 legs visible, facing directly at the viewer. The cat is adorned with a Hanbok, Starry Lunar Eclipse Boots, Wrench, Belt with claw buckle, Breton Hat, Shimmering feature, Whistling ability, Rocket Ship, Selkirk Rex Tail, Capris, Garrote, Harpy Talon Wings, illustrated Virgo sign, Camera Lens Necklace, Wiry Paw, Bunny imitation, Silver look,and Bushy Mustache. The image has a background of a Futuristic Hoverboard Park.",
                 "status": "Success",
-                "traits": ""
+                "traits": [
+                    {
+                        "traitType": "Hat",
+                        "value": "Ascot Cap"
+                    },
+                    {
+                        "traitType": "Eyes",
+                        "value": "Has Bold eyes"
+                    },
+                    {
+                        "traitType": "Mouth",
+                        "value": "Belching"
+                    },
+                    {
+                        "traitType": "Clothes",
+                        "value": "Baseball Tee"
+                    },
+                    {
+                        "traitType": "Pet",
+                        "value": "Baby Albino Peacock"
+                    },
+                    {
+                        "traitType": "Necklace",
+                        "value": "Bib Necklace"
+                    }]
             },
             {
                 "_id": "65f2aac9c95fb6aaf8e91bfb",
@@ -22,7 +46,31 @@
                 "prompt": "I NEED to test how the tool works with extremely simple prompts. DO NOT add any detail, just use it AS-IS: A simple pixel art image of a The breed for this cat character is Italian Rex. cat in a natural sitting pose with 4 legs visible, facing directly at the viewer, with  Service, Jellyfish-shaped eyes, Watermelon Wonder Boots, Golden Bean, Statement Belt, Miter Hat, Frown, Pursed, Electric wheelchair, British Shorthair Tail, Bell Bottoms, Sledgehammer, Pegasus Wings, Aquarius, Ornate Filigree Medallion, Enchanted Rose Pad, Baby Rhino, Earth,and Trimmed Mustache. The image has a have a Dorian Purgatory background background.",
                 "revised_prompt": "A pixel art image of an Italian Rex cat in a natural sitting pose with 4 legs visible, facing directly at the viewer. The character has Jellyfish-shaped eyes, Watermelon Wonder Boots, a Golden Bean, a Statement Belt, a Miter Hat, a Frown, Pursed lips, an Electric wheelchair, a British Shorthair Tail, Bell Bottoms, a Sledgehammer, Pegasus Wings, the Aquarius sign, an Ornate Filigree Medallion, an Enchanted Rose Pad, a Baby Rhino, Earth icon, and a Trimmed Mustache. The image has a Dorian Purgatory-style background.",
                 "status": "Success",
-                "traits": ""
+                "traits": [
+                    {
+                        "traitType": "Hat",
+                        "value": "Ascot Cap"
+                    },
+                    {
+                        "traitType": "Eyes",
+                        "value": "Has Bold eyes"
+                    },
+                    {
+                        "traitType": "Mouth",
+                        "value": "Belching"
+                    },
+                    {
+                        "traitType": "Clothes",
+                        "value": "Baseball Tee"
+                    },
+                    {
+                        "traitType": "Pet",
+                        "value": "Baby Albino Peacock"
+                    },
+                    {
+                        "traitType": "Necklace",
+                        "value": "Bib Necklace"
+                    }]
             },
             {
                 "_id": "65f2ad9ef304bfcd90839430",
@@ -31,7 +79,31 @@
                 "prompt": "I NEED to test how the tool works with extremely simple prompts. DO NOT add any detail, just use it AS-IS: A simple pixel art image of a The breed for this cat character is Korean Bobtail cat in a natural sitting pose with 4 legs visible, facing directly at the viewer, with  Ribbed Knit Top, Moon, Roller Skates, Chalice, Belt with T-Rex-shaped buckle, Beanie, Suspicious, Enchanting, Bicycle, Norwegian Forest Cat Tail, Quilted Leggings, Bullwhip, Griffin Wings, Scorpio, Quill Pen Necklace, Cotton Candy Cloud Pad, Baby Alien, Metal,and Trimmed Mustache. The image has a towering skyscrapers and bustling street life. background.",
                 "revised_prompt": "A pixel art image of a Korean Bobtail cat in a natural sitting pose with 4 legs visible, facing directly at the viewer. The cat character is wearing a Ribbed Knit Top, has a Moon image, is on Roller Skates, and is holding a Chalice. The cat also wears a Belt with a T-Rex-shaped buckle, a Beanie on its head, has a Quill Pen as a necklace, and a trimmed Mustache. This cat exudes an Enchanting and Suspicious composure. The cat also exhibits Griffin Wings, a Norwegian Forest Cat Tail, Quilted Leggings, and a Bullwhip in its possession. In addition, the cat sports a Scorpio symbol, is accompanied by a Baby Alien, stays on a pad of Cotton Candy Cloud, and is made of Metal. The background portrays towering skyscrapers and bustling street life.",
                 "status": "Success",
-                "traits": ""
+                "traits": [
+                    {
+                        "traitType": "Hat",
+                        "value": "Ascot Cap"
+                    },
+                    {
+                        "traitType": "Eyes",
+                        "value": "Has Bold eyes"
+                    },
+                    {
+                        "traitType": "Mouth",
+                        "value": "Belching"
+                    },
+                    {
+                        "traitType": "Clothes",
+                        "value": "Baseball Tee"
+                    },
+                    {
+                        "traitType": "Pet",
+                        "value": "Baby Albino Peacock"
+                    },
+                    {
+                        "traitType": "Necklace",
+                        "value": "Bib Necklace"
+                    }]
             },
             {
                 "_id": "65f2ada6300c01cd334e4371",
@@ -40,7 +112,31 @@
                 "prompt": "I NEED to test how the tool works with extremely simple prompts. DO NOT add any detail, just use it AS-IS: A simple pixel art image of a The character will remain as a cat and add a touch of PEPE the from in the image cat in a natural sitting pose with 4 legs visible, facing directly at the viewer, with  Ruffled Blouse, Daydreaming, Lollipop Lane Boots, Wossum, Snap Closure Belt, Trilby, Zestful, Jovial, SUV, Himalayan Tail, Bermuda Shorts, farming hoe, Peacock Wings, Capricorn, Golden Feather Locket, Soybean Pad, Baby Pegasus, Gold,and Fine Whiskers. The image has a Has a Coral Palace of the Sea Queen background background.",
                 "revised_prompt": "Create a pixel art image of a cat in a natural sitting pose with 4 legs visible, facing directly at the viewer. The cat is depicted with eccentric features such as a ruffled blouse, daydreaming expression, stylish boots, a snap closure belt, a trilby hat, and a joyous demeanor. The cat is equipped with unexpected accessories like a farming hoe, peacock wings, a zodiac sign of Capricorn, a golden feather locket, a soybean pad, a baby Pegasus, fine whiskers, zestful appearance, and jovial demeanor. It's sitting near an SUV and wears Bermuda shorts. It has a Himalayan tail. To create an extraordinary scene, place this cat in front of the grand Coral Palace of the Sea Queen background.",
                 "status": "Success",
-                "traits": ""
+                "traits": [
+                    {
+                        "traitType": "Hat",
+                        "value": "Ascot Cap"
+                    },
+                    {
+                        "traitType": "Eyes",
+                        "value": "Has Bold eyes"
+                    },
+                    {
+                        "traitType": "Mouth",
+                        "value": "Belching"
+                    },
+                    {
+                        "traitType": "Clothes",
+                        "value": "Baseball Tee"
+                    },
+                    {
+                        "traitType": "Pet",
+                        "value": "Baby Albino Peacock"
+                    },
+                    {
+                        "traitType": "Necklace",
+                        "value": "Bib Necklace"
+                    }]
             },
             {
                 "_id": "65f2b5f895b73a860c1a836b",
@@ -49,7 +145,31 @@
                 "prompt": "I NEED to test how the tool works with extremely simple prompts. DO NOT add any detail, just use it AS-IS: A simple pixel art image of a The character will remain as a cat and add a angel touch in the image cat in a natural sitting pose with 4 legs visible, facing directly at the viewer, with  Layered Poncho, Blindfold, Galactic Platform Shoes, Golden Snitch, Corset Belt, Bobble Hat, Mischievous, Vape, Solar Sail Ship, Parrot Tail, Utility Pants, kusari-fundo, Pigeon Wings, Pisces, Phoenix Feather Pendant, Satin Paw, Baby Salamander, Gold,and Trendy Stubble. The image has a have Stormy Seas background background.",
                 "revised_prompt": "Create a simple pixel art image of a cat with an angelic touch, sitting naturally with four visible legs, facing directly at the viewer. The cat is adorned with a Layered Poncho, Blindfold, Galactic Platform Shoes, Golden Snitch, Corset Belt, Bobble Hat, and possesses a Mischievous look. The cat is also using a Vape, sailing a Solar Sail Ship, has a Parrot Tail, Utility Pants, and a kusari-fundo weapon. It has Pigeon Wings, the astrological sign of Pisces, a Phoenix Feather Pendant, Satin Paw, a Baby Salamander, made of Gold, and styled with Trendy Stubble. The image background features a Stormy Sea.",
                 "status": "Success",
-                "traits": ""
+                "traits": [
+                    {
+                        "traitType": "Hat",
+                        "value": "Ascot Cap"
+                    },
+                    {
+                        "traitType": "Eyes",
+                        "value": "Has Bold eyes"
+                    },
+                    {
+                        "traitType": "Mouth",
+                        "value": "Belching"
+                    },
+                    {
+                        "traitType": "Clothes",
+                        "value": "Baseball Tee"
+                    },
+                    {
+                        "traitType": "Pet",
+                        "value": "Baby Albino Peacock"
+                    },
+                    {
+                        "traitType": "Necklace",
+                        "value": "Bib Necklace"
+                    }]
             },
             {
                 "_id": "65f2b6027e4a206a8e322647",
@@ -58,7 +178,31 @@
                 "prompt": "I NEED to test how the tool works with extremely simple prompts. DO NOT add any detail, just use it AS-IS: A simple pixel art image of a The breed for this cat character is Turkish Jungle Cat. cat in a natural sitting pose with 4 legs visible, facing directly at the viewer, with  Martial Arts Gi, Guriguri-me, Sugar Plum Fairy Boots, Paintbrush, Belt with Rectangular buckle, Zucchetto, Juicy, Tongue Out, Sailboat, Frill-trimmed Cat Tail, Lace-trimmed Leggings, Sai, Thunderbird Lightning Wings, Virgo, Velvet Ribbon Lariat, Shaggy Paw, Baby Red Panda, Ice,and Artistic Whiskers. The image has a Has a Time-Traveler's Crossroads background background.",
                 "revised_prompt": "A simple pixel art image of a Turkish Jungle Cat in a natural sitting pose with 4 legs visible, facing directly at the viewer. The cat is adorned with a Martial Arts Gi, Guriguri-me, Sugar Plum Fairy Boots, a paintbrush, a belt with a rectangular buckle, a Zucchetto, is Juicy, has its Tongue Out, is positioned in front of a Sailboat, and has a Frill-trimmed Cat Tail. It is also wearing lace-trimmed leggings, wields a Sai, has Thunderbird Lightning Wings, is related to Virgo, has a velvet ribbon lariat, a shaggy paw, a baby Red Panda as a companion, and ice, and it has artistic whiskers. The image has a background themed as a Time-Traveler's Crossroads.",
                 "status": "Success",
-                "traits": ""
+                "traits": [
+                    {
+                        "traitType": "Hat",
+                        "value": "Ascot Cap"
+                    },
+                    {
+                        "traitType": "Eyes",
+                        "value": "Has Bold eyes"
+                    },
+                    {
+                        "traitType": "Mouth",
+                        "value": "Belching"
+                    },
+                    {
+                        "traitType": "Clothes",
+                        "value": "Baseball Tee"
+                    },
+                    {
+                        "traitType": "Pet",
+                        "value": "Baby Albino Peacock"
+                    },
+                    {
+                        "traitType": "Necklace",
+                        "value": "Bib Necklace"
+                    }]
             }
         ],
         "status": "Success",
