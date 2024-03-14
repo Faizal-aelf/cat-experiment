@@ -62,9 +62,15 @@ const ExperimentSubmitterPage = () => {
                   [name]: jsonString,
               }));
             } else {
+              const fileContent = e.target.result;
+              // Remove comments that appear after valid code
+              const cleanedContent = fileContent.replace(/\/\/.*?(?=\n|$)/g, ''); // Remove single line comments
+
+              // Remove newlines and replace multiple spaces with a single space
+              const finalContent = cleanedContent.replace(/[\n\r]+/g, ' ').replace(/\s+/g, ' ');
               setState(prevState => ({
                 ...prevState,
-                [name]: e.target.result,
+                [name]: finalContent,
             }));
             }
           };
