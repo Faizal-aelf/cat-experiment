@@ -42,7 +42,7 @@ In the project directory, you can run:
 `config.json` -> src/sampleFile/config.json
 
 
-## Sets to deploy
+## Sets to deploy in Github
 
 Do below steps after cloning and installing all npm module by `npm install --force`
 
@@ -52,3 +52,5 @@ Do below steps after cloning and installing all npm module by `npm install --for
 4. Add the following property inside scripts object in the package.json file -> `"deploy": "gh-pages -d build"`
 5. `npm run deploy`
 6. Wait for 1 or 2 minutes and Check the last deployment time from here -> https://github.com/Faizal-aelf/cat-experiment/settings/pages and if its happened recent then click "Visit site" button.
+
+# http://35.222.235.21/#/experimentSubmitter
