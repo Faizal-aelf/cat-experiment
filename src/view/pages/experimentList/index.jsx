@@ -7,7 +7,7 @@
  */
 // GENERIC IMPORT
 import { useState, useEffect } from 'react';
-import {Box, TextField} from '@mui/material';
+import axios from 'axios';
 
 // COMMON COMPONENT
 import {Container} from '../../atom';
@@ -34,11 +34,11 @@ const ExperimentListPage = () => {
   const getExperimentList = async () => {
     setLoading(true);
     try {
-        /*const response = await axios.get(EXPERIMENT_LIST_API);;
+        const response = await axios.get(EXPERIMENT_LIST_API);;
         console.log(response.data);
-        setState(response.data);*/
+        setState(response.data);
         // ONCE ABOVE API CODE UN-COMMENTED THEN COMMENT THE BELOW SET STATE MOCK DATA CODE
-        setState(ExperimentList);
+        // setState(ExperimentList);
     } catch (error) {
       console.log('error: ', error);
       alert("Error occured:");

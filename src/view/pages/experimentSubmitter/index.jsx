@@ -67,11 +67,19 @@ const ExperimentSubmitterPage = () => {
               const cleanedContent = fileContent.replace(/\/\/.*?(?=\n|$)/g, ''); // Remove single line comments
 
               // Remove newlines and replace multiple spaces with a single space
-              const finalContent = cleanedContent.replace(/[\n\r]+/g, ' ').replace(/\s+/g, ' ');
-              setState(prevState => ({
+              let finalContent = cleanedContent.replace(/[\n\r]+/g, ' ');
+              
+              // Apply additional replacements
+              finalContent = finalContent.replace(/\s*({|}|:)\s*/g, '$1')
+                                        .replace(/\s*([=+-,]==|===|[,=-])\s*/g, '$1')
+                                        .replace(/\s*([!"#$%&'()*+,\-./:;<=>?@[\\\]^~])\s*/g, '$1').replace(/\s+/g, ' ');;   
+              // finalContent = finalContent.replace(/\b(function|return|var|const|let)\b/g, '$1 '); 
+              
+              console.log(finalContent)          
+              setTimeout(() => setState(prevState => ({
                 ...prevState,
                 [name]: finalContent,
-            }));
+              })), 0);
             }
           };
         reader.readAsText(file);

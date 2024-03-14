@@ -19,6 +19,7 @@ import {dateTimeDisplayFormat} from '../../../utils/file';
 import {SUBMIT_STATUE} from '../../../utils/constants';
 import Comments from './components/comments';
 import {FEATURE} from '../../../utils/feature';
+import {EXPERIMENT_LIST_API} from '../../../api/constants';
 
 // MOCK DATA
 import ExperimentList from './data/list.json';
@@ -39,10 +40,9 @@ const ExperimentDetailsPage = () => {
   const getExperimentDetailById = async () => {
     setLoading(true);
     try {
-        /*const response = await axios.get(EXPERIMENT_LIST_API);;
+        /*const response = await axios.get(GET_EXPERIMENT_BY_ID_API);;
         console.log(response.data);
-        const responseList = response.data;
-        */
+        const responseList = response.data; */
         const responseList = ExperimentList;
         setState(responseList.find(item => item.experimentId == itemId) || {})
     } catch (error) {
