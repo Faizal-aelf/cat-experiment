@@ -13,6 +13,7 @@ import WebPImage from 'react-webp-image';
 // UTILS 
 import {handleDownload} from '../../../utils/file';
 import {IMAGE_FORMAT} from '../../../utils/constants';
+import {FEATURE} from '../../../utils/feature';
 
 // STYLE IMPORT
 import useStyles from './styles';
@@ -32,7 +33,7 @@ const CardImage = (props) => {
                 width={widthSize}
             />}
             {isWebpImage && <WebPImage src={imageSrc} className={classes.cardImage}/>}
-            {(title || size) && <Box className={classes.cardImageTitle}>{title} {size && <Chip label={size} size="small" variant="outlined" />}</Box>}
+            {FEATURE.SHOW_IMAGE_SIZE && (title || size) && <Box className={classes.cardImageTitle}>{title} {size && <Chip label={size} size="small" variant="outlined" />}</Box>}
             {isDownloadable && <Button variant="text" startIcon={<i class="fa fa-download"></i>}>Download</Button>}
         </Box>
     )

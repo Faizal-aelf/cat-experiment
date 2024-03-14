@@ -53,6 +53,14 @@ const ExperimentDetailsPage = () => {
     }
   };
 
+  // Function to get the size of an image in KB from its Base64 content
+  const getImageSizeInKB = (base64String) => {
+    const binaryString = window.atob(base64String);
+    const sizeInKB = binaryString.length / 1024;
+    return sizeInKB;
+  };
+
+
   useEffect(() => {
     getExperimentDetailById();
   }, []);
@@ -123,7 +131,8 @@ const ExperimentDetailsPage = () => {
           <li className={classes.dataListItem} key={`result-image-${index}`}>
             <CardImage file={
             {
-              imageSrc: `data:image/jpeg;base64, ${item.imageResult}`,
+              imageSrc: `data:image/webp;base64, ${item.imageResult}`,
+              size: `${getImageSizeInKB(item.imageResult).toFixed(2)} KB`,
             }
             }/>
             <Box className={classes.title} marginTop={0.5}><strong>Prompt: </strong>{item.prompt}&nbsp;<i className={clsx("fa fa-clone", classes.copyIcon)} onClick={() => navigator.clipboard.writeText(item.prompt)}></i></Box>
