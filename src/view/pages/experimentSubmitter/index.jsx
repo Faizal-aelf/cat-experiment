@@ -79,8 +79,31 @@ const ExperimentSubmitterPage = () => {
   };
 
   
+  const isAllFieldValid = () => {
+    if (!state.submitterName.trim().length) {
+      alert("Please provide submitter name");
+      return false;
+    } else if (!state.traitsFile) {
+      alert("Please upload trait definitions file in json format");
+      return false;
+    } else if (!state.createPromptFile.trim().length) {
+      alert("Please provide config prompt js file content");
+      return false;
+    } else if (!state.configFile) {
+      alert("Please upload config file in json format");
+      return false;
+    } else if (state.noOfSamples == 0) {
+      alert("Please provide no of samples");
+      return false;
+    } else {
+      return true;
+    }
+  };
 
   const submitForm = async () => {
+    if (!isAllFieldValid()) {
+      return;
+    }
     setLoading(true);
       try {
           const params = {
@@ -128,12 +151,12 @@ const ExperimentSubmitterPage = () => {
       <PageHeader title='Experiment Submitter' subtitle="Here's what you're looking at"  {...{isLoading}}></PageHeader>
       <Box className={classes.formRow}>
         <Box flex={1}>
-          <TextField  label="Experiment ID" variant="outlined" 
+          <TextField  label="Experiment ID" variant="outlined" required 
             fullWidth={true} value={state.experimentId} className={classes.formTextfield}  disabled
             type='text'/>
         </Box>
         <Box flex={1}>
-          <TextField  label="Submitter Name" variant="outlined" 
+          <TextField  label="Submitter Name" variant="outlined"  required 
             fullWidth={true} value={state.submitterName} className={classes.formTextfield} 
             type='text' onChange={(event) => handleChange(event, 'submitterName')}/>
         </Box>
@@ -142,17 +165,17 @@ const ExperimentSubmitterPage = () => {
         <Box flex={1}>
           <TextField 
             accept="image/*" 
+            required
             type="file" 
             variant="outlined" 
             className={classes.formTextfield}
             onChange={(event) => handleChange(event, 'traitsFile')}
             fullWidth={true}
-            required
             helperText='Upload Trait definitioins file in json format'/>
         </Box>
         <Box flex={1}>
           <TextField  label="Create Prompt File content" variant="outlined" fullWidth={true} value={state.createPromptFile} 
-            multiline maxRows={5} className={classes.formTextfield} 
+            multiline maxRows={5} className={classes.formTextfield} required 
             onChange={(event) => handleChange(event, 'createPromptFile')} />
             <Typography variant="caption" display="block">
               Compress your js file content from <a target='_blank' href='https://www.jyshare.com/front-end/51/'>https://www.jyshare.com/front-end/51/</a> before pasting it
@@ -172,7 +195,7 @@ const ExperimentSubmitterPage = () => {
             helperText='Upload config file in json format'/>
         </Box>
         <Box flex={1}>
-          <TextField  label="Number of samples" variant="outlined" 
+          <TextField  label="Number of samples" variant="outlined" required 
             fullWidth={true} value={state.noOfSamples} className={classes.formTextfield} 
             type='number' 
             onChange={(event) => handleChange(event, 'noOfSamples')} inputProps={{min: "1", max: "1000"}}/>
