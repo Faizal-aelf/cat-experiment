@@ -167,7 +167,7 @@ const ExperimentSubmitterPage = () => {
         <Box flex={1}>
           <TextField  label="Submitter Name" variant="outlined"  required 
             fullWidth={true} value={state.submitterName} className={classes.formTextfield} 
-            type='text' onChange={(event) => handleChange(event, 'submitterName')}/>
+            type='text' onChange={(event) => handleChange(event, 'submitterName')} inputProps={{maxLength: 25}}/>
         </Box>
       </Box>
       <Box className={classes.formRow}>
@@ -217,7 +217,7 @@ const ExperimentSubmitterPage = () => {
         <Box flex={1}>
           <TextField  label="Experiment details" variant="outlined" fullWidth={true} value={state.experimentDetails} 
             multiline maxRows={5} className={classes.formTextfield} 
-            onChange={(event) => handleChange(event, 'experimentDetails')}/>
+            onChange={(event) => handleChange(event, 'experimentDetails')} inputProps={{maxLength: 400}}/>
         </Box>
       </Box>
       <Box className="btn-container" textAlign='right'>

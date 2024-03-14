@@ -6,7 +6,7 @@
  * 
  */
 // GENERIC IMPORT
-import {Box} from '@mui/material';
+import {Grid} from '@mui/material';
 
 // COMMON COMPONENT
 
@@ -19,14 +19,14 @@ const ExperimentTiles = (props) => {
   
 
   return (
-    <Box display='flex' flex={1} className={classes.rowHeader}>
-      <Box flex={props.widths[0]} className={classes.rowHeaderTitle}>ID</Box>
-      <Box flex={props.widths[1]} className={classes.rowHeaderTitle}>Description</Box>
-      <Box flex={props.widths[2]} className={classes.rowHeaderTitle}>Submitter</Box>
-      <Box flex={props.widths[3]} className={classes.rowHeaderTitle}>Created Date</Box>
-      <Box flex={props.widths[4]} className={classes.rowHeaderTitle}>Status</Box>
-      <Box flex={props.widths[5]} className={classes.rowHeaderTitle}>Action</Box>
-    </Box>
+    <Grid container className={classes.rowHeader}>
+      <Grid item xs={props.widths[0]} className={classes.rowHeaderTitle}>ID</Grid>
+      <Grid item xs={props.widths[1]} className={classes.rowHeaderTitle}>Description</Grid>
+      <Grid item xs={props.widths[2]} className={classes.rowHeaderTitle}>Submitter</Grid>
+      <Grid item xs={props.widths[3]} className={classes.rowHeaderTitle}>Created Date</Grid>
+      <Grid item xs={props.widths[4]} className={classes.rowHeaderTitle}>Status</Grid>
+      <Grid item xs={props.widths[5]} className={classes.rowHeaderTitle}>Action</Grid>
+    </Grid>
   );
 };
 

@@ -31,7 +31,17 @@ const useStyles = makeStyles(() => ({
     },
     link: {
         cursor: 'pointer',
-        color: '#256dd3'
+        color: '#256dd3',
+        '&:hover': {
+            textDecoration: 'underline',
+        }
+    },
+    underlink: {
+        cursor: 'pointer',
+        color: '#256dd3',
+        '&:hover': {
+            textDecoration: 'underline',
+        }
     }
 }));
   

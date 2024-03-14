@@ -24,7 +24,7 @@ export const truncateString = (str, maxLength = 20) =>  {
   return str;
 }
 
-export const dateTimeDisplayFormat = (dateString, format = 'MMMM Do YYYY') =>  {
+export const dateTimeDisplayFormat = (dateString, format = 'MMM Do YYYY') =>  {
   // Parse the date string using Moment.js
   const parsedDate = moment(dateString, 'YYYY-MM-DD HH:mm:ss');
 
@@ -34,7 +34,7 @@ export const dateTimeDisplayFormat = (dateString, format = 'MMMM Do YYYY') =>  {
 }
 
 
-export const dateTimeDisplayServerFormat = (dateString, fromFormat = 'YYYYMMDD', toFormat = 'MMMM Do YYYY') =>  {
+export const dateTimeDisplayServerFormat = (dateString, fromFormat = 'YYYYMMDD', toFormat = 'MMM Do YYYY') =>  {
   // Parse the date string using Moment.js
   const parsedDate = moment(dateString, fromFormat).format(toFormat);
   return parsedDate;
