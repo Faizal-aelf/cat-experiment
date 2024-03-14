@@ -26,7 +26,7 @@ const CardImage = (props) => {
 
     return (
         <Box className={classes.cardImageContainer}>
-            {!isWebpImage && <img 
+            {!isWebpImage && <Magnifier 
                 {...(imageRef && { ref: imageRef })} 
                 className={classes.cardImage} src={imageSrc} 
                 width={widthSize}

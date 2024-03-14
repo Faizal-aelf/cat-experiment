@@ -118,15 +118,16 @@ const ExperimentDetailsPage = () => {
               multiline maxRows={10} className={classes.formTextfield}/>
         </Box>
       </Box>
-      {state.resultList?.length > 0 && <ul className={classes.datalist}>
-        {state.resultList.map((item) => (
-          <li className={classes.dataListItem}>
+      {state?.result?.length > 0 && <ul className={classes.datalist}>
+        {state?.result.map((item, index) => (
+          <li className={classes.dataListItem} key={`result-image-${index}`}>
             <CardImage file={
             {
-              imageSrc: item.image_url,
+              imageSrc: `data:image/jpeg;base64, ${item.imageResult}`,
             }
             }/>
-            <Box className={classes.title} marginTop={0.5}>{item.prompt}&nbsp;<i className={clsx("fa fa-clone", classes.copyIcon)} onClick={() => navigator.clipboard.writeText(item.prompt)}></i></Box>
+            <Box className={classes.title} marginTop={0.5}><strong>Prompt: </strong>{item.prompt}&nbsp;<i className={clsx("fa fa-clone", classes.copyIcon)} onClick={() => navigator.clipboard.writeText(item.prompt)}></i></Box>
+            <Box className={classes.title} marginTop={1}><strong>Revised prompt: </strong>{item.revised_prompt}&nbsp;<i className={clsx("fa fa-clone", classes.copyIcon)} onClick={() => navigator.clipboard.writeText(item.prompt)}></i></Box>
           </li>
         ))}
         </ul>}
