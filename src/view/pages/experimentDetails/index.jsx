@@ -10,6 +10,7 @@ import clsx from 'clsx';
 import { useState, useEffect } from 'react';
 import {Box, TextField, Alert} from '@mui/material';
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 // COMMON COMPONENT
 import {Container} from '../../atom';
