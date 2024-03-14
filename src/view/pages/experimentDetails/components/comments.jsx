@@ -69,7 +69,7 @@ const Comments = (props) => {
         resetForm();
     } catch (error) {
         console.log('error: ', error);
-        alert("Error occured:");
+        alert("Something went wrong. Please try again later.");
     } finally {
         setLoading(false);
     }

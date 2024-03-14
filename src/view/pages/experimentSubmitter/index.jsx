@@ -32,7 +32,7 @@ const ExperimentSubmitterPage = () => {
     noOfSamples: 100,
     experimentDetails: '',
     traitsFile: null,
-    createPromptFile: '',
+    createPromptFile: null,
     configFile: null,
     submittedDate: getTodayDateTime(),
     status: SUBMIT_STATUE.SUBMITTED,
@@ -45,7 +45,7 @@ const ExperimentSubmitterPage = () => {
         const file = files[0];
         const reader = new FileReader();
         const fileExtension = file.name.split('.').pop().toLowerCase();
-        if ((fileExtension === 'json' && ['configFile', 'traitsFile'].includes(name))/* || (fileExtension === 'js' && ['createPromptFile'].includes(name))*/) {
+        if ((fileExtension === 'json' && ['configFile', 'traitsFile'].includes(name)) || (fileExtension === 'js' && ['createPromptFile'].includes(name))) {
           reader.onload = (e) => {
             if (fileExtension == 'json') {
             const jsonData = JSON.parse(e.target.result);
@@ -54,16 +54,22 @@ const ExperimentSubmitterPage = () => {
                   ...prevState,
                   [name]: jsonString,
               }));
-            } /* else {
+            } else {
+              let finalContent = e.target.result;
+              console.log(finalContent);
               setTimeout(() => setState(prevState => ({
                 ...prevState,
                 [name]: finalContent,
               })), 0);
-            } */
+            }
           };
         reader.readAsText(file);
       } else {
-        alert('Please upload only JSON file');
+         if (['configFile', 'traitsFile'].includes(name)) {
+          alert('Please upload only JSON file');
+        } else {
+          alert('Please upload only Javascript file');
+        }
         setState(prevState => ({
           ...prevState,
           [name]: null,
@@ -81,19 +87,19 @@ const ExperimentSubmitterPage = () => {
   
   const isAllFieldValid = () => {
     if (!state.submitterName.trim().length) {
-      alert("Please provide submitter name");
+      alert("Please provide the name of the submitter.");
       return false;
     } else if (!state.traitsFile) {
-      alert("Please upload trait definitions file in json format");
+      alert("Kindly provide the trait definitions file in JSON format.");
       return false;
-    } else if (!state.createPromptFile.trim().length) {
-      alert("Please provide config prompt js file content");
+    } else if (!state.createPromptFile) {
+      alert("Please provide the 'createPrompt' file in JavaScript (.js) format.");
       return false;
     } else if (!state.configFile) {
-      alert("Please upload config file in json format");
+      alert("Please upload the configuration file in JSON format.");
       return false;
     } else if (state.noOfSamples == 0) {
-      alert("Please provide no of samples");
+      alert("Please provide the number of samples.");
       return false;
     } else {
       return true;
@@ -123,11 +129,11 @@ const ExperimentSubmitterPage = () => {
               }
           );
           console.log(response.data);
-          alert('Submitted successfully');
+          alert('Submission successful.');
           resetForm();
       } catch (error) {
           console.log('error: ', error);
-          alert("Error occured:");
+          alert("Something went wrong. Please try again later.");
       } finally {
           setLoading(false);
       }
@@ -140,7 +146,9 @@ const ExperimentSubmitterPage = () => {
       submitterName: '',
       noOfSamples: 100,
       experimentDetails: '',
-      createPromptFile: '',
+      traitsFile: null,
+      createPromptFile: null,
+      configFile: null,
       submittedDate: getTodayDateTime(),
       status: SUBMIT_STATUE.SUBMITTED
     });
@@ -174,12 +182,15 @@ const ExperimentSubmitterPage = () => {
             helperText='Upload Trait definitioins file in json format'/>
         </Box>
         <Box flex={1}>
-          <TextField  label="Create Prompt File content" variant="outlined" fullWidth={true} value={state.createPromptFile} 
-            multiline maxRows={5} className={classes.formTextfield} required 
-            onChange={(event) => handleChange(event, 'createPromptFile')} />
-            <Typography variant="caption" display="block">
-              Compress your js file content from <a target='_blank' href='https://www.jyshare.com/front-end/51/'>https://www.jyshare.com/front-end/51/</a> before pasting it
-            </Typography>
+          <TextField 
+              accept="image/*" 
+              type="file" 
+              variant="outlined" 
+              className={classes.formTextfield}
+              onChange={(event) => handleChange(event, 'createPromptFile')}
+              fullWidth={true}
+              required
+              helperText='Upload createPrompt file in js format'/>
         </Box>
       </Box>
       <Box className={classes.formRow}>

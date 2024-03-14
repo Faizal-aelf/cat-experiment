@@ -10,7 +10,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 // COMMON COMPONENT
-import {Container} from '../../atom';
+import {Container, Empty} from '../../atom';
 import {EXPERIMENT_LIST_API} from '../../../api/constants';
 import PageHeader from '../common/header/pageHeader';
 import ExperimentTiles from './components/experimentTiles';
@@ -40,7 +40,7 @@ const ExperimentListPage = () => {
         // setState(ExperimentList);
     } catch (error) {
       console.log('error: ', error);
-      alert("Error occured:");
+      alert("Something went wrong. Please try again later.");
     } finally {
         setLoading(false);
     }
@@ -54,9 +54,12 @@ const ExperimentListPage = () => {
     <Container>
       <PageHeader title='Experiment List' subtitle="Here's what you're looking at"  {...{isLoading}}></PageHeader>
       <ExperimentTiles widths={widths}/>
-      {state.map((item, index) => (
+      {state?.length > 0 ? state.map((item, index) => (
         <ExperimentItem key={index} widths={widths} data={item}/>
-      ))}
+      )) : <Empty 
+      title='No experiment created yet' 
+      subtitle='Please create new experiment from Experiment Submitter page.' 
+      icon={<i className="fa fa-file-image-o"></i>}/>}
     </Container>
   );
 };
