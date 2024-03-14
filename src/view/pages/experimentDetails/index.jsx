@@ -126,20 +126,29 @@ const ExperimentDetailsPage = () => {
               multiline maxRows={10} className={classes.formTextfield}/>
         </Box>
       </Box>
-      {state?.result?.length > 0 && <ul className={classes.datalist}>
+      {state?.result?.length > 0 && <Box>
         {state?.result.map((item, index) => (
-          <li className={classes.dataListItem} key={`result-image-${index}`}>
-            <CardImage file={
-            {
-              imageSrc: `data:image/webp;base64, ${item.imageResult}`,
-              size: `${getImageSizeInKB(item.imageResult).toFixed(2)} KB`,
-            }
-            }/>
-            <Box className={classes.title} marginTop={0.5}><strong>Prompt: </strong>{item.prompt}&nbsp;<i className={clsx("fa fa-clone", classes.copyIcon)} onClick={() => navigator.clipboard.writeText(item.prompt)}></i></Box>
-            <Box className={classes.title} marginTop={1}><strong>Revised prompt: </strong>{item.revised_prompt}&nbsp;<i className={clsx("fa fa-clone", classes.copyIcon)} onClick={() => navigator.clipboard.writeText(item.prompt)}></i></Box>
-          </li>
+          <Box className={classes.dataList} key={`result-image-${index}`}>
+            <Box width={300} className={classes.dataListItem}>
+              <CardImage file={
+                {
+                  imageSrc: `data:image/webp;base64, ${item.imageResult}`,
+                  size: `${getImageSizeInKB(item.imageResult).toFixed(2)} KB`,
+                }
+              }/>
+            </Box>
+            <Box className={classes.dataListItem}>
+              <Box className={classes.title} marginTop={0.5}><strong>Prompt: </strong>{item.prompt}&nbsp;<i className={clsx("fa fa-clone", classes.copyIcon)} onClick={() => navigator.clipboard.writeText(item.prompt)}></i></Box>
+            </Box>
+            <Box className={classes.dataListItem}>
+              <Box className={classes.title} marginTop={1}><strong>Revised prompt: </strong>{item.revised_prompt}&nbsp;<i className={clsx("fa fa-clone", classes.copyIcon)} onClick={() => navigator.clipboard.writeText(item.revised_prompt)}></i></Box>
+            </Box>
+            {item.traits && <Box className={classes.dataListItem}>
+              <Box className={classes.title} marginTop={1}><strong>Traits: </strong>{item.traits}&nbsp;<i className={clsx("fa fa-clone", classes.copyIcon)} onClick={() => navigator.clipboard.writeText(item.traits)}></i></Box>
+            </Box>}
+          </Box>
         ))}
-        </ul>}
+        </Box>}
       {FEATURE.COMMENTS && <Comments experimentData={state}/>}
     </Container>
   );
