@@ -114,6 +114,7 @@ const ExperimentSubmitterPage = () => {
       try {
           const params = {
             ...state,
+            noOfSamples: parseInt(state.noOfSamples),
             submittedDate: getTodayDateTime()
           }
           console.log("params: ", params);
