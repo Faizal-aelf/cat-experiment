@@ -34,8 +34,7 @@ const ExperimentListPage = () => {
   const getExperimentList = async () => {
     setLoading(true);
     try {
-        const response = await axios.get(EXPERIMENT_LIST_API);;
-        console.log(response.data);
+        const response = await axios.get(EXPERIMENT_LIST_API);
         setState(response.data);
         // ONCE ABOVE API CODE UN-COMMENTED THEN COMMENT THE BELOW SET STATE MOCK DATA CODE
         // setState(ExperimentList);
