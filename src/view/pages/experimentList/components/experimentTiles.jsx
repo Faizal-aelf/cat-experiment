@@ -6,7 +6,7 @@
  * 
  */
 // GENERIC IMPORT
-import {Grid} from '@mui/material';
+import {Grid, Box} from '@mui/material';
 
 // COMMON COMPONENT
 
@@ -24,8 +24,8 @@ const ExperimentTiles = (props) => {
       <Grid item xs={props.widths[1]} className={classes.rowHeaderTitle}>Description</Grid>
       <Grid item xs={props.widths[2]} className={classes.rowHeaderTitle}>Submitter</Grid>
       <Grid item xs={props.widths[3]} className={classes.rowHeaderTitle}>Created Date</Grid>
-      <Grid item xs={props.widths[4]} className={classes.rowHeaderTitle}>Status</Grid>
-      <Grid item xs={props.widths[5]} className={classes.rowHeaderTitle}>Action</Grid>
+      <Grid item xs={props.widths[4]} className={classes.rowHeaderTitle}><Box textAlign={'center'}>Status</Box></Grid>
+      <Grid item xs={props.widths[5]} className={classes.rowHeaderTitle}><Box textAlign={'center'}>Action</Box></Grid>
     </Grid>
   );
 };

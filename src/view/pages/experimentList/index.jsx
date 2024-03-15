@@ -29,7 +29,7 @@ const ExperimentListPage = () => {
   // STATE VARIABLE
   const [state, setState] = useState([]);
   const [isLoading, setLoading] = useState(false);
-  const widths = [3, 2, 2, 2, 2, 1]
+  const widths = [2, 2, 2, 2, 2, 2]
 
   const getExperimentList = async () => {
     setLoading(true);
