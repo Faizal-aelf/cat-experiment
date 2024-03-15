@@ -6,8 +6,8 @@
  * 
  */
 // GENERIC IMPORT
-import { useState } from 'react';
-import {Box, TextField, Button, Typography} from '@mui/material';
+import { useState, useRef } from 'react';
+import {Box, TextField, Button, Tooltip} from '@mui/material';
 import axios from 'axios';
 
 // COMMON COMPONENT
@@ -23,6 +23,11 @@ import useStyles from './styles';
 const ExperimentSubmitterPage = () => {
   // DECLARE STYLE
   const classes = useStyles();
+
+  // REF VARIABLE
+  const traitFileRef = useRef(null);
+  const createPromptFileRef = useRef(null);
+  const configFileRef = useRef(null);
 
   // STATE VARIABLE
   const [isLoading, setLoading] = useState(false);
@@ -153,6 +158,9 @@ const ExperimentSubmitterPage = () => {
       submittedDate: getTodayDateTime(),
       status: SUBMIT_STATUE.SUBMITTED
     });
+    traitFileRef.current.value = null;
+    createPromptFileRef.current.value = null;
+    configFileRef.current.value = null;
   }
 
   return (
@@ -180,7 +188,10 @@ const ExperimentSubmitterPage = () => {
             className={classes.formTextfield}
             onChange={(event) => handleChange(event, 'traitsFile')}
             fullWidth={true}
-            helperText='Upload Trait definitioins file in json format'/>
+            inputProps={{
+              ref: traitFileRef
+            }}
+            helperText={<>Upload Trait definitioins file in json format. You can <Tooltip title="You can download and use it but its not latest file."><a href='/sampleFile/trait-definitioins.json' className={classes.link} download>download</a></Tooltip> sample file here.</>}/>
         </Box>
         <Box flex={1}>
           <TextField 
@@ -191,7 +202,10 @@ const ExperimentSubmitterPage = () => {
               onChange={(event) => handleChange(event, 'createPromptFile')}
               fullWidth={true}
               required
-              helperText='Upload createPrompt file in js format'/>
+              inputProps={{
+                ref: createPromptFileRef
+              }}
+              helperText={<>Upload createPrompt file in js format. You can <Tooltip title="You can download and use it but its not latest file."><a href='/sampleFile/createPrompt.js' className={classes.link} download>download</a></Tooltip> sample file here.</>}/>
         </Box>
       </Box>
       <Box className={classes.formRow}>
@@ -204,7 +218,10 @@ const ExperimentSubmitterPage = () => {
             onChange={(event) => handleChange(event, 'configFile')}
             fullWidth={true}
             required
-            helperText='Upload config file in json format'/>
+            inputProps={{
+              ref: configFileRef
+            }}
+            helperText={<>Upload config file in json format. You can <Tooltip title="You can download and use it but its not latest file."><a href='/sampleFile/config.json' className={classes.link} download>download</a></Tooltip> sample file here.</>}/>
         </Box>
         <Box flex={1}>
           <TextField  label="Number of samples" variant="outlined" required 
@@ -220,7 +237,8 @@ const ExperimentSubmitterPage = () => {
             onChange={(event) => handleChange(event, 'experimentDetails')} inputProps={{maxLength: 400}}/>
         </Box>
       </Box>
-      <Box className="btn-container" textAlign='right'>
+      <Box className={classes.btnContainer} textAlign='right'>
+          <Button variant="outlined" onClick={resetForm}>Clear</Button>
           <Button variant="contained" onClick={submitForm}>Submit Experiment</Button>
       </Box>
     </Container>

@@ -11,6 +11,21 @@ const useStyles = makeStyles(() => ({
     formTextfield: {
         marginBottom: 0,
     },
+    link: {
+        cursor: 'pointer',
+        color: '#256dd3',
+        textDecoration: 'none',
+        '&:hover': {
+            textDecoration: 'underline',
+            cursor: 'pointer'
+        }
+    },
+    btnContainer: {
+        display: 'flex',
+        justifyContent: 'flex-end',
+        gap: '12px'
+    }
+
 }));
   
 export default useStyles;
