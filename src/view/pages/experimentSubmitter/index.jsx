@@ -17,12 +17,18 @@ import {EXPERIMENT_SUBMIT_API} from '../../../api/constants';
 import {generateRandomString, getTodayDateTime} from '../../../utils/file';
 import {SUBMIT_STATUE} from '../../../utils/constants';
 
+// UTILS IMPORT
+import useNotification from '../../../utils/notification';
+
 // STYLE IMPORT
 import useStyles from './styles';
 
 const ExperimentSubmitterPage = () => {
   // DECLARE STYLE
   const classes = useStyles();
+
+  // DECLARE NOTIFICATION AND NAVIDATE
+  const setNotification = useNotification();
 
   // REF VARIABLE
   const traitFileRef = useRef(null);
@@ -71,9 +77,9 @@ const ExperimentSubmitterPage = () => {
         reader.readAsText(file);
       } else {
          if (['configFile', 'traitsFile'].includes(name)) {
-          alert('Please upload only JSON file');
+          setNotification.error('Please upload only JSON file');
         } else {
-          alert('Please upload only Javascript file');
+          setNotification.error('Please upload only Javascript file');
         }
         setState(prevState => ({
           ...prevState,
@@ -92,23 +98,19 @@ const ExperimentSubmitterPage = () => {
   
   const isAllFieldValid = () => {
     if (!state.submitterName.trim().length) {
-      alert("Please provide the name of the submitter.");
-      return false;
+      setNotification.error("Please provide the name of the submitter.");
     } else if (!state.traitsFile) {
-      alert("Kindly provide the trait definitions file in JSON format.");
-      return false;
+      setNotification.error("Please upload the trait definitions file in JSON format.");
     } else if (!state.createPromptFile) {
-      alert("Please provide the 'createPrompt' file in JavaScript (.js) format.");
-      return false;
+      setNotification.error("Please upload the 'createPrompt' file in JavaScript (.js) format.");
     } else if (!state.configFile) {
-      alert("Please upload the configuration file in JSON format.");
-      return false;
+      setNotification.error("Please upload the configuration file in JSON format.");
     } else if (state.noOfSamples == 0) {
-      alert("Please provide the number of samples.");
-      return false;
+      setNotification.error("Please provide the number of samples.");
     } else {
       return true;
     }
+    return false;
   };
 
   const submitForm = async () => {
@@ -135,11 +137,11 @@ const ExperimentSubmitterPage = () => {
               }
           );
           console.log(response.data);
-          alert('Submission successful.');
+          setNotification.success('Submission successful.');
           resetForm();
       } catch (error) {
           console.log('error: ', error);
-          alert("Something went wrong. Please try again later.");
+          setNotification.error("Something went wrong. Please try again later.");
       } finally {
           setLoading(false);
       }

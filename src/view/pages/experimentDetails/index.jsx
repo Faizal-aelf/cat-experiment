@@ -22,6 +22,9 @@ import Comments from './components/comments';
 import {FEATURE} from '../../../utils/feature';
 import {GET_EXPERIMENT_BY_ID_API} from '../../../api/constants';
 
+// UTILS IMPORT
+import useNotification from '../../../utils/notification';
+
 // MOCK DATA
 import ExperimentList from './data/list.json';
 
@@ -32,6 +35,9 @@ const ExperimentDetailsPage = () => {
   // DECLARE STYLE
   const classes = useStyles();
   const { itemId } = useParams();
+
+  // DECLARE NOTIFICATION AND NAVIDATE
+  const setNotification = useNotification();
 
   // STATE VARIABLE
   const [isLoading, setLoading] = useState(false);
@@ -48,7 +54,7 @@ const ExperimentDetailsPage = () => {
         setState(responseObject);
     } catch (error) {
       console.log('error: ', error);
-      alert("Something went wrong. Please try again later.");
+      setNotification.error("Something went wrong. Please try again later.");
     } finally {
         setLoading(false);
     }

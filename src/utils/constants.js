@@ -5,3 +5,9 @@ export const SUBMIT_STATUE = {
     COMPLETED: 'COMPLETED', 
     ERROR: 'ERROR'
 };
+
+// NOTIFICATION TYPE
+export const NotificationType = {
+    success: 'success',
+    error: 'error',
+}

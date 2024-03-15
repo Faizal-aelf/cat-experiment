@@ -15,6 +15,8 @@ import {dateTimeDisplayFormat, generateRandomString, getTodayDateTime} from '../
 import {SUBMIT_STATUE} from '../../../../utils/constants';
 import {UPDATE_EXPERIMENT_API} from '../../../../api/constants';
 
+// UTILS IMPORT
+import useNotification from '../../../../utils/notification';
 
 // STYLE IMPORT
 import useStyles from './styles';
@@ -22,6 +24,9 @@ import useStyles from './styles';
 const Comments = (props) => {
   // DECLARE STYLE
   const classes = useStyles();
+
+  // DECLARE NOTIFICATION AND NAVIDATE
+  const setNotification = useNotification();
 
   // STATE VARIABLE
   const [isLoading, setLoading] = useState(false);
@@ -65,11 +70,11 @@ const Comments = (props) => {
         console.log(response.data);
         */
         // ONCE API READY, CAN UNCOMMENT THE ABOVE CODE
-        alert('Submitted successfully');
+        setNotification.success('Submitted successfully');
         resetForm();
     } catch (error) {
         console.log('error: ', error);
-        alert("Something went wrong. Please try again later.");
+        setNotification.error("Something went wrong. Please try again later.");
     } finally {
         setLoading(false);
     }

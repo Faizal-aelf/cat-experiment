@@ -19,12 +19,18 @@ import ExperimentItem from './components/experimentItem';
 // MOCK DATA
 import ExperimentList from './data/list.json';
 
+// UTILS IMPORT
+import useNotification from '../../../utils/notification';
+
 // STYLE IMPORT
 import useStyles from './styles';
 
 const ExperimentListPage = () => {
   // DECLARE STYLE
   const classes = useStyles();
+
+  // DECLARE NOTIFICATION AND NAVIDATE
+  const setNotification = useNotification();
 
   // STATE VARIABLE
   const [state, setState] = useState([]);
@@ -40,7 +46,7 @@ const ExperimentListPage = () => {
         // setState(ExperimentList);
     } catch (error) {
       console.log('error: ', error);
-      alert("Something went wrong. Please try again later.");
+      setNotification.error("Something went wrong. Please try again later.");
     } finally {
         setLoading(false);
     }
