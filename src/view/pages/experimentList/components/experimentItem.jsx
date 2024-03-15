@@ -6,12 +6,11 @@
  * 
  */
 // GENERIC IMPORT
-import {Box, Grid, Tooltip, Chip} from '@mui/material';
+import {Box, Grid, Tooltip} from '@mui/material';
 import {useNavigate} from 'react-router-dom';
 
 // COMMON COMPONENT
-import {SUBMIT_STATUE} from '../../../../utils/constants';
-import {truncateString, getDate} from '../../../../utils/file';
+import {truncateString, getDate, shipStatus} from '../../../../utils/file';
 import {FEATURE} from '../../../../utils/feature';
 
 // STYLE IMPORT
@@ -34,14 +33,6 @@ const ExperimentItem = (props) => {
     const protocol = window.location.protocol; // Get the protocol (http or https) part of the URL
     const fullLink = `${protocol}://${host}/#/experimentDetails/${props.data.experimentId}`
     navigator.clipboard.writeText(fullLink)
-  }
-
-  const shipStatus = {
-    [SUBMIT_STATUE.COMPLETED]: <Chip color="success" label='Completed' size="small"/>,
-    [SUBMIT_STATUE.SUCCESS]: <Chip color="success" label='Completed' size="small"/>,
-    [SUBMIT_STATUE.ERROR]: <Chip color="error" label='Failed' size="small"/>,
-    [SUBMIT_STATUE.STARTED]: <Chip color="info" label='Started' size="small"/>,
-    [SUBMIT_STATUE.SUBMITTED]: <Chip color="warning" label='Pending' size="small"/>,
   }
 
   return (
