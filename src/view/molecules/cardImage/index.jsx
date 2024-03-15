@@ -34,7 +34,7 @@ const CardImage = (props) => {
             />}
             {isWebpImage && <WebPImage src={imageSrc} className={classes.cardImage}/>}
             {FEATURE.SHOW_IMAGE_SIZE && (title || size) && <Box className={classes.cardImageTitle}>{title} {size && <Chip label={size} size="small" variant="outlined" />}</Box>}
-            {isDownloadable && <Button variant="text" startIcon={<i class="fa fa-download"></i>}>Download</Button>}
+            {isDownloadable && <Button variant="text" startIcon={<i className="fa fa-download"></i>}>Download</Button>}
         </Box>
     )
 };

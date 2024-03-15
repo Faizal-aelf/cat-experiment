@@ -46,3 +46,10 @@ export const getDate = (value, format = 'MMM Do YYYY HH:mm:ss') => {
     return moment.unix(value).format(format);
   }
 }
+
+// Function to get the size of an image in KB from its Base64 content
+export const getImageSizeInKB = (base64String) => {
+  const binaryString = window.atob(base64String);
+  const sizeInKB = binaryString.length / 1024;
+  return sizeInKB;
+};

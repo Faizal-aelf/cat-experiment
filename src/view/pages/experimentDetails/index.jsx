@@ -14,13 +14,13 @@ import axios from 'axios';
 
 // COMMON COMPONENT
 import {Container} from '../../atom';
-import {CardImage} from '../../molecules';
 import PageHeader from '../common/header/pageHeader';
 import {getDate} from '../../../utils/file';
 import {SUBMIT_STATUE} from '../../../utils/constants';
 import Comments from './components/comments';
 import {FEATURE} from '../../../utils/feature';
 import {GET_EXPERIMENT_BY_ID_API} from '../../../api/constants';
+import Result from './components/result';
 
 // UTILS IMPORT
 import useNotification from '../../../utils/notification';
@@ -58,13 +58,6 @@ const ExperimentDetailsPage = () => {
     } finally {
         setLoading(false);
     }
-  };
-
-  // Function to get the size of an image in KB from its Base64 content
-  const getImageSizeInKB = (base64String) => {
-    const binaryString = window.atob(base64String);
-    const sizeInKB = binaryString.length / 1024;
-    return sizeInKB;
   };
 
   const downloadJSONFile = (content, fileName) => {
@@ -182,32 +175,7 @@ const ExperimentDetailsPage = () => {
           </Box>
         </Box>
       </Box>
-      {state?.result?.length > 0 && <Box>
-        {state?.result.map((item, index) => (
-          <Box className={classes.dataList} key={`result-image-${index}`}>
-            <Box width={300} className={classes.dataListItem}>
-              <Box>
-                <CardImage file={
-                  {
-                    imageSrc: `data:image/webp;base64, ${item.imageResult}`,
-                    size: `${getImageSizeInKB(item.imageResult).toFixed(2)} KB`,
-                  }
-                }/>
-                <Box className={classes.title} textAlign={'center'} marginTop={0.5}><strong>Created date: </strong>{Date(item.create_date)}</Box>
-              </Box>
-            </Box>
-            <Box className={classes.dataListItem}>
-              <Box className={classes.title} marginTop={0.5}><strong>Prompt: </strong>{item.prompt}&nbsp;<i className={clsx("fa fa-clone", classes.copyIcon)} onClick={() => navigator.clipboard.writeText(item.prompt)}></i></Box>
-            </Box>
-            <Box className={classes.dataListItem}>
-              <Box className={classes.title} marginTop={1}><strong>Revised prompt: </strong>{item.revised_prompt}&nbsp;<i className={clsx("fa fa-clone", classes.copyIcon)} onClick={() => navigator.clipboard.writeText(item.revised_prompt)}></i></Box>
-            </Box>
-            {item.traits && <Box className={classes.dataListItem}>
-              <Box className={classes.title} marginTop={1}><strong>Traits: </strong>{JSON.stringify(item.traits)}&nbsp;</Box>
-            </Box>}
-          </Box>
-        ))}
-        </Box>}
+      {state?.result?.length > 0 && <Result result={state.result}/>}
       {FEATURE.COMMENTS && <Comments experimentData={state}/>}
     </Container>
   );

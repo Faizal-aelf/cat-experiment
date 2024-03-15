@@ -105,10 +105,10 @@ const Comments = (props) => {
             <Box className={classes.commentUserBox} key={item.id}>
                 <Box display='flex'>
                     <Box className={classes.commentUserTitle}>
-                        <i class="fa fa-user-circle-o" aria-hidden="true"></i>&nbsp;&nbsp;{item.name}
+                        <i className="fa fa-user-circle-o" aria-hidden="true"></i>&nbsp;&nbsp;{item.name}
                     </Box>
                     <Box className={classes.commentUserDate}>
-                        <i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;&nbsp;{dateTimeDisplayFormat(item.date, 'MMMM Do YYYY, h:mm:ss a')}
+                        <i className="fa fa-calendar" aria-hidden="true"></i>&nbsp;&nbsp;{dateTimeDisplayFormat(item.date, 'MMMM Do YYYY, h:mm:ss a')}
                     </Box>
                 </Box>
                 <Box className={classes.commentUserContent}>{item.comments}</Box>

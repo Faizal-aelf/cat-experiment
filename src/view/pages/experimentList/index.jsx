@@ -21,6 +21,7 @@ import ExperimentList from './data/list.json';
 
 // UTILS IMPORT
 import useNotification from '../../../utils/notification';
+import {sortList} from './utils';
 
 // STYLE IMPORT
 import useStyles from './styles';
@@ -41,7 +42,8 @@ const ExperimentListPage = () => {
     setLoading(true);
     try {
         const response = await axios.get(EXPERIMENT_LIST_API);
-        setState(response.data);
+        const sortedData = sortList(response.data);
+        setState(sortedData);
         // ONCE ABOVE API CODE UN-COMMENTED THEN COMMENT THE BELOW SET STATE MOCK DATA CODE
         // setState(ExperimentList);
     } catch (error) {
