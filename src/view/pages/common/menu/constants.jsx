@@ -27,7 +27,7 @@ export const utilsMenuItems = [
     {
         id: 'EXPERIMENTLIST',
         label: 'Experiment List Generator',
-        icon: <i className="fa fa-commenting-o"></i>,
+        icon: <i className="fa fa-list-alt"></i>,
         link: PATH.EXPERIMENT_LIST_PATH,
     },
 ];

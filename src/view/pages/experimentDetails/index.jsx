@@ -16,7 +16,7 @@ import axios from 'axios';
 import {Container} from '../../atom';
 import {CardImage} from '../../molecules';
 import PageHeader from '../common/header/pageHeader';
-import {dateTimeDisplayFormat} from '../../../utils/file';
+import {getDate} from '../../../utils/file';
 import {SUBMIT_STATUE} from '../../../utils/constants';
 import Comments from './components/comments';
 import {FEATURE} from '../../../utils/feature';
@@ -102,7 +102,6 @@ const ExperimentDetailsPage = () => {
     URL.revokeObjectURL(url);
   };
 
-
   useEffect(() => {
     getExperimentDetailById();
   }, []);
@@ -131,7 +130,7 @@ const ExperimentDetailsPage = () => {
         </Box>
         <Box className={classes.formField}>
           <Box className={classes.fieldLabel}>Submitted date</Box>
-          <Box className={classes.fieldValue}>{dateTimeDisplayFormat(state.submittedDate)}</Box>
+          <Box className={classes.fieldValue}>{getDate(state.submittedDate)}</Box>
         </Box>
       </Box>
 

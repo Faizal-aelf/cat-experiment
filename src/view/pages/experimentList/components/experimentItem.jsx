@@ -6,13 +6,12 @@
  * 
  */
 // GENERIC IMPORT
-import { useState } from 'react';
 import {Box, Grid, Tooltip, Chip} from '@mui/material';
 import {useNavigate} from 'react-router-dom';
 
 // COMMON COMPONENT
 import {SUBMIT_STATUE} from '../../../../utils/constants';
-import {truncateString, dateTimeDisplayServerFormat} from '../../../../utils/file';
+import {truncateString, getDate} from '../../../../utils/file';
 
 // STYLE IMPORT
 import useStyles from '../styles';
@@ -43,7 +42,7 @@ const ExperimentItem = (props) => {
       </Grid>
       <Grid item xs={props.widths[1]} className={classes.rowData}><Tooltip title={props.data.experimentDetails}>{truncateString(props.data.experimentDetails, 20)}</Tooltip></Grid>
       <Grid item xs={props.widths[2]} className={classes.rowData}><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;{props.data.submitterName}</Grid>
-      <Grid item xs={props.widths[3]} className={classes.rowData}><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;{dateTimeDisplayServerFormat(props.data.submittedDate)}</Grid>
+      <Grid item xs={props.widths[3]} className={classes.rowData}><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;{getDate(props.data.submittedDate, 'MMM Do YYYY')}</Grid>
       <Grid item xs={props.widths[4]} className={classes.rowData}>{shipStatus[props.data.status.toUpperCase()]}</Grid>
       <Grid item xs={props.widths[5]} className={classes.rowData}>
         <Box component='span' className={classes.link} onClick={() => openDetails(props.data.experimentId)}>Details</Box>&nbsp;
