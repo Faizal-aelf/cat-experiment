@@ -148,7 +148,7 @@ const ExperimentDetailsPage = () => {
         <Box className={classes.formFieldlBlock}>
             <Box className={classes.fieldLabel}>Trait definitioins</Box>
             <TextField  variant="outlined" fullWidth={true} value={state.traitsFile} 
-              multiline maxRows={10} className={classes.formTextfield}/>
+              multiline maxRows={10} className={classes.formTextfield} inputProps={{readOnly: true}}/>
           <Box className="btn-container" textAlign='right' mt={1}>
             <Button variant="contained" onClick={() => downloadJSONFile(state.traitsFile, 'traits')} disabled={!state.traitsFile}>Download</Button>
           </Box>
@@ -159,7 +159,7 @@ const ExperimentDetailsPage = () => {
         <Box className={classes.formFieldlBlock}>
             <Box className={classes.fieldLabel}>Create Prompt file</Box>
           <TextField  variant="outlined" fullWidth={true} value={state.createPromptFile} 
-              multiline maxRows={10} className={classes.formTextfield}/>
+              multiline maxRows={10} className={classes.formTextfield} inputProps={{readOnly: true}}/>
             <Box className="btn-container" textAlign='right' mt={1}>
               <Button variant="contained" onClick={() => downloadJSFile(state.createPromptFile, 'createPrompt')} disabled={!state.createPromptFile}>Download</Button>
             </Box>
@@ -169,7 +169,7 @@ const ExperimentDetailsPage = () => {
         <Box className={classes.formFieldlBlock}>
             <Box className={classes.fieldLabel}>Config file</Box>
           <TextField variant="outlined" fullWidth={true} value={state.configFile} 
-              multiline maxRows={10} className={classes.formTextfield}/>
+              multiline maxRows={10} className={classes.formTextfield} inputProps={{readOnly: true}}/>
           <Box className="btn-container" textAlign='right' mt={1}>
             <Button variant="contained" onClick={() => downloadJSONFile(state.configFile, 'config')} disabled={!state.configFile}>Download</Button>
           </Box>

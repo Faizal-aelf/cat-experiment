@@ -12,6 +12,7 @@ import {useNavigate} from 'react-router-dom';
 // COMMON COMPONENT
 import {SUBMIT_STATUE} from '../../../../utils/constants';
 import {truncateString, getDate} from '../../../../utils/file';
+import {FEATURE} from '../../../../utils/feature';
 
 // STYLE IMPORT
 import useStyles from '../styles';
@@ -56,7 +57,7 @@ const ExperimentItem = (props) => {
       </Grid>
       <Grid item xs={props.widths[5]} className={classes.rowData} >
         <Box textAlign={'center'}><Box component='span' className={classes.link} onClick={() => openDetails(props.data.experimentId)}>Details</Box>&nbsp;
-        | &nbsp; <Box className={classes.link} component='span' onClick={() => copyWebAddressLink()}>Copy Link</Box>
+        {FEATURE.COPY_LINK && (<>| &nbsp; <Box className={classes.link} component='span' onClick={() => copyWebAddressLink()}>Copy Link</Box></>)}
         </Box>
       </Grid>
     </Grid>
