@@ -40,7 +40,7 @@ const ExperimentItem = (props) => {
     [SUBMIT_STATUE.SUCCESS]: <Chip color="success" label='Completed' size="small"/>,
     [SUBMIT_STATUE.ERROR]: <Chip color="error" label='Failed' size="small"/>,
     [SUBMIT_STATUE.STARTED]: <Chip color="info" label='Started' size="small"/>,
-    [SUBMIT_STATUE.SUBMITTED]: <Chip color="info" label='Submitted' size="small"/>,
+    [SUBMIT_STATUE.SUBMITTED]: <Chip color="warning" label='Pending' size="small"/>,
   }
 
   return (
