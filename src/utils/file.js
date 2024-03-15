@@ -41,7 +41,7 @@ export const dateTimeDisplayServerFormat = (dateString, fromFormat = 'YYYYMMDD',
 
 export const getDate = (value, format = 'MMM Do YYYY HH:mm:ss') => {
   if (typeof value == 'string') {
-    return dateTimeDisplayServerFormat(value)
+    return dateTimeDisplayServerFormat(value, 'YYYY-MM-DD HH:mm:ss', format)
   } else {
     return moment.unix(value).format(format);
   }
