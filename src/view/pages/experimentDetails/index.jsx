@@ -105,7 +105,7 @@ const ExperimentDetailsPage = () => {
   return (
     <Container>
       <PageHeader title='Experiment Details' subtitle="Here's what you're looking at"  {...{isLoading}}></PageHeader>
-      {experimentAlert[state.status.toUpperCase()]}
+      {state?.status && experimentAlert[state.status.toUpperCase()]}
       <Box className={classes.formRow} mt={5}>
         <Box className={classes.formField}>
           <Box className={classes.fieldLabel}>Experiment ID</Box>
@@ -131,7 +131,7 @@ const ExperimentDetailsPage = () => {
       <Box className={classes.formRow}>
         <Box className={classes.formField}>
           <Box className={classes.fieldLabel}>Status</Box>
-          <Box className={classes.fieldValue}>{shipStatus[state.status.toUpperCase()]}</Box>
+          <Box className={classes.fieldValue}>{state?.status && shipStatus[state.status.toUpperCase()]}</Box>
         </Box>
         <Box className={classes.formField}>
           <Box className={classes.fieldLabel}>Experiment details</Box>
