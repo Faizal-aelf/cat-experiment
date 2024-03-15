@@ -40,7 +40,7 @@ const ExperimentSubmitterPage = () => {
   const [state, setState] = useState({
     experimentId: generateRandomString(),
     submitterName: '',
-    noOfSamples: 100,
+    noOfSamples: 5,
     experimentDetails: '',
     traitsFile: null,
     createPromptFile: null,
@@ -152,7 +152,7 @@ const ExperimentSubmitterPage = () => {
       ...state,
       experimentId: generateRandomString(),
       submitterName: '',
-      noOfSamples: 100,
+      noOfSamples: 5,
       experimentDetails: '',
       traitsFile: null,
       createPromptFile: null,

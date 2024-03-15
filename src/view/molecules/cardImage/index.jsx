@@ -19,7 +19,7 @@ import {FEATURE} from '../../../utils/feature';
 import useStyles from './styles';
 
 const CardImage = (props) => {
-    const {imageSrc, imageRef, title, size, isDownloadable, isWebpImage, imageSize, ...rest} = props.file;
+    const {imageSrc, imageRef, title, size, handleImageModal, isDownloadable, isWebpImage, imageSize, ...rest} = props.file;
     // DECLARE STYLE
     const classes = useStyles();
     const sourceImg = imageRef?.current?.src || imageSrc;
@@ -27,7 +27,7 @@ const CardImage = (props) => {
 
     return (
         <Box className={classes.cardImageContainer}>
-            {!isWebpImage && <Magnifier 
+            {!isWebpImage && <Magnifier onClick={() => handleImageModal?.(sourceImg)} 
                 {...(imageRef && { ref: imageRef })} 
                 className={classes.cardImage} src={imageSrc} 
                 width={widthSize}
