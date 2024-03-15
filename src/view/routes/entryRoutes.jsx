@@ -8,6 +8,9 @@
 // GENERIC IMPORT
 import { Route, Routes, HashRouter } from 'react-router-dom';
 
+// PAGE 
+import LoginPage from '../pages/login';
+
 // ROUTER IMPORT
 import AppRoutes from './appRoutes';
 import * as PATH from './constants';
@@ -16,6 +19,7 @@ import * as PATH from './constants';
 const EntryRoutes = () => (
   <HashRouter>
     <Routes>
+      <Route path={PATH.LOGIN_PATH} element={<LoginPage />}/>
       <Route path={PATH.OTHER_PATH} element={<AppRoutes />}/>
     </Routes>
   </HashRouter>

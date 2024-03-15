@@ -1,13 +1,13 @@
 /**
  * 
- * Traits experiment component
+ * Image Generator experiment component
  * @author - NA 
  * @date - 13th March, 2024
  * 
  */
 // GENERIC IMPORT
 import { useState, useRef } from 'react';
-import {Box, TextField, Button, Tooltip} from '@mui/material';
+import {Box, TextField, Button, Tooltip, Chip} from '@mui/material';
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 
@@ -15,9 +15,10 @@ import {useNavigate} from 'react-router-dom';
 import {Container} from '../../atom';
 import PageHeader from '../common/header/pageHeader';
 import {EXPERIMENT_SUBMIT_API} from '../../../api/constants';
-import * as PATH from '../../routes/constants';
 import {generateRandomString, getTodayDateTime} from '../../../utils/file';
 import {SUBMIT_STATUE} from '../../../utils/constants';
+import * as PATH from '../../routes/constants';
+import TraitsModal from './components/traitsModal';
 
 // UTILS IMPORT
 import useNotification from '../../../utils/notification';
@@ -25,7 +26,7 @@ import useNotification from '../../../utils/notification';
 // STYLE IMPORT
 import useStyles from './styles';
 
-const ExperimentSubmitterPage = () => {
+const ImageGeneratorPage = () => {
   // DECLARE STYLE
   const classes = useStyles();
 
@@ -36,16 +37,17 @@ const ExperimentSubmitterPage = () => {
   const setNotification = useNotification();
 
   // REF VARIABLE
-  const traitFileRef = useRef(null);
   const createPromptFileRef = useRef(null);
   const configFileRef = useRef(null);
+  const [selectedTraits, setSelectedTraits] = useState([]);
+  const [isOpenModal, setOpenModal] = useState(false);
 
   // STATE VARIABLE
   const [isLoading, setLoading] = useState(false);
   const [state, setState] = useState({
     experimentId: generateRandomString(),
     submitterName: '',
-    noOfSamples: 5,
+    noOfSamples: 1,
     experimentDetails: '',
     traitsFile: null,
     createPromptFile: null,
@@ -61,7 +63,7 @@ const ExperimentSubmitterPage = () => {
         const file = files[0];
         const reader = new FileReader();
         const fileExtension = file.name.split('.').pop().toLowerCase();
-        if ((fileExtension === 'json' && ['configFile', 'traitsFile'].includes(name)) || (fileExtension === 'js' && ['createPromptFile'].includes(name))) {
+        if ((fileExtension === 'json' && ['configFile'].includes(name)) || (fileExtension === 'js' && ['createPromptFile'].includes(name))) {
           reader.onload = (e) => {
             if (fileExtension == 'json') {
             const jsonData = JSON.parse(e.target.result);
@@ -72,7 +74,6 @@ const ExperimentSubmitterPage = () => {
               }));
             } else {
               let finalContent = e.target.result;
-              console.log(finalContent);
               setTimeout(() => setState(prevState => ({
                 ...prevState,
                 [name]: finalContent,
@@ -81,7 +82,7 @@ const ExperimentSubmitterPage = () => {
           };
         reader.readAsText(file);
       } else {
-         if (['configFile', 'traitsFile'].includes(name)) {
+         if (['configFile'].includes(name)) {
           setNotification.error('Please upload only JSON file');
         } else {
           setNotification.error('Please upload only Javascript file');
@@ -100,12 +101,19 @@ const ExperimentSubmitterPage = () => {
     }
   };
 
-  
+  const openModal = () => {
+    setOpenModal(true);
+  }
+
+  const closeModal = () => {
+    setOpenModal(false);
+  }
+
   const isAllFieldValid = () => {
     if (!state.submitterName.trim().length) {
       setNotification.error("Please provide the name of the submitter.");
-    } else if (!state.traitsFile) {
-      setNotification.error("Please upload the trait definitions file in JSON format.");
+    } else if (!selectedTraits || selectedTraits.length < 4) {
+      setNotification.error("Please select atleast 4 traits.");
     } else if (!state.createPromptFile) {
       setNotification.error("Please upload the 'createPrompt' file in JavaScript (.js) format.");
     } else if (!state.configFile) {
@@ -124,10 +132,15 @@ const ExperimentSubmitterPage = () => {
     }
     setLoading(true);
       try {
+          const traitsFileContent = JSON.stringify(selectedTraits.reduce((acc, curr) => {
+            acc[curr.traitType] = [curr.value];
+            return acc;
+          }, {}));
           const params = {
             ...state,
-            noOfSamples: parseInt(state.noOfSamples),
-            submittedDate: getTodayDateTime()
+            noOfSamples: 1,
+            submittedDate: getTodayDateTime(),
+            traitsFile: traitsFileContent
           }
           console.log("params: ", params);
           const response = await axios.post(
@@ -141,7 +154,6 @@ const ExperimentSubmitterPage = () => {
                   },
               }
           );
-          console.log(response.data);
           setNotification.success('Submission successful.');
           resetForm();
           navigate(PATH.EXPERIMENT_LIST_PATH);
@@ -166,9 +178,14 @@ const ExperimentSubmitterPage = () => {
       submittedDate: getTodayDateTime(),
       status: SUBMIT_STATUE.SUBMITTED
     });
-    traitFileRef.current.value = null;
+    setSelectedTraits([]);
     createPromptFileRef.current.value = null;
     configFileRef.current.value = null;
+  }
+
+  const removeTraits = (value, traitType) => {
+    const updatedList = selectedTraits.filter(item => !(item.value == value && item.traitType == traitType));
+    setSelectedTraits(updatedList);
   }
 
   return (
@@ -189,20 +206,6 @@ const ExperimentSubmitterPage = () => {
       <Box className={classes.formRow}>
         <Box flex={1}>
           <TextField 
-            accept="image/*" 
-            required
-            type="file" 
-            variant="outlined" 
-            className={classes.formTextfield}
-            onChange={(event) => handleChange(event, 'traitsFile')}
-            fullWidth={true}
-            inputProps={{
-              ref: traitFileRef
-            }}
-            helperText={<>Upload Trait definitioins file in json format. You can <Tooltip title="You can download and use it but its not latest file."><a href='/sampleFile/trait-definitioins.json' className={classes.link} download>download</a></Tooltip> sample file here.</>}/>
-        </Box>
-        <Box flex={1}>
-          <TextField 
               accept="image/*" 
               type="file" 
               variant="outlined" 
@@ -215,10 +218,8 @@ const ExperimentSubmitterPage = () => {
               }}
               helperText={<>Upload createPrompt file in js format. You can <Tooltip title="You can download and use it but its not latest file."><a href='/sampleFile/createPrompt.js' className={classes.link} download>download</a></Tooltip> sample file here.</>}/>
         </Box>
-      </Box>
-      <Box className={classes.formRow}>
         <Box flex={1}>
-        <TextField 
+          <TextField 
             accept="image/*" 
             type="file" 
             variant="outlined" 
@@ -231,12 +232,6 @@ const ExperimentSubmitterPage = () => {
             }}
             helperText={<>Upload config file in json format. You can <Tooltip title="You can download and use it but its not latest file."><a href='/sampleFile/config.json' className={classes.link} download>download</a></Tooltip> sample file here.</>}/>
         </Box>
-        <Box flex={1}>
-          <TextField  label="Number of samples" variant="outlined" required 
-            fullWidth={true} value={state.noOfSamples} className={classes.formTextfield} 
-            type='number' 
-            onChange={(event) => handleChange(event, 'noOfSamples')} inputProps={{min: "1", max: "1000"}}/>
-        </Box>
       </Box>
       <Box className={classes.formRow}>
         <Box flex={1}>
@@ -245,7 +240,12 @@ const ExperimentSubmitterPage = () => {
             onChange={(event) => handleChange(event, 'experimentDetails')} inputProps={{maxLength: 400}}/>
         </Box>
       </Box>
-      <Box className={classes.btnContainer} textAlign='right'>
+      {selectedTraits.map((item) => <Chip color="primary" onDelete={() => removeTraits(item.value, item.traitType)} label={`${item.traitType}: ${item.value}`} className={classes.chipItem} key={`${item.value}-selected-traits`} />)}
+      <Box mt={2}/>
+      {isOpenModal && <TraitsModal selectedTraits={selectedTraits} setSelectedTraits={setSelectedTraits} onClose={closeModal}/>}
+
+      <Box className={classes.btnContainer} textAlign='right' mt={4}>
+          <Button variant="outlined" onClick={openModal}>Select Traits</Button>
           <Button variant="outlined" onClick={resetForm}>Clear</Button>
           <Button variant="contained" onClick={submitForm}>Submit Experiment</Button>
       </Box>
@@ -253,4 +253,4 @@ const ExperimentSubmitterPage = () => {
   );
 };
 
-export default ExperimentSubmitterPage;
+export default ImageGeneratorPage;

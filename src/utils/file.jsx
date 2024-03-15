@@ -60,7 +60,7 @@ export const shipStatus = {
   [SUBMIT_STATUE.COMPLETED]: <Chip color="success" label='Completed' size="small"/>,
   [SUBMIT_STATUE.SUCCESS]: <Chip color="success" label='Completed' size="small"/>,
   [SUBMIT_STATUE.ERROR]: <Chip color="error" label='Failed' size="small"/>,
-  [SUBMIT_STATUE.STARTED]: <Chip color="info" label='Started' size="small"/>,
+  [SUBMIT_STATUE.STARTED]: <Chip color="warning" label='Pending' size="small"/>,
   [SUBMIT_STATUE.SUBMITTED]: <Chip color="warning" label='Pending' size="small"/>,
 }
 

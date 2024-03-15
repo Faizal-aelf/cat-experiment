@@ -30,6 +30,12 @@ export const utilsMenuItems = [
         icon: <i className="fa fa-list-alt"></i>,
         link: PATH.EXPERIMENT_LIST_PATH,
     },
+    {
+        id: 'IMAGEGENERATOR',
+        label: 'Image Generator',
+        icon: <i className="fa fa-picture-o"></i>,
+        link: PATH.IMAGE_GENERATOR_PATH,
+    },
 ];
 
 export const helpMenuItems = [
